@@ -5,6 +5,15 @@ TODO
 - Fix bug where you can't yank to or paste from a register
 - Add visual mode sounds
 - Replace
+- Sounds to map:
+	- Copy.wav
+	- Delete.wav
+	- Gotomark.wav
+	- Jump.wav
+	- Mark.wav
+	- autocomplete
+	- space & backspace keys in normal mode
+	- fFtT mappings
 - Sounds to add:
 	- Undo
 	- Repeat
