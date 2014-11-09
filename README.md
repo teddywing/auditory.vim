@@ -9,6 +9,10 @@ Created at Music Hack Day Boston 2014.
 **Note:** this is alpha software is still very buggy. Some mappings don't support counts when they should. A few audio files are available but the mappings haven't yet been implemented.
 
 
+## Requirements
+Requires [mplayer](http://www.mplayerhq.hu/).
+
+
 ## Contributing
 The code is a bit hackish at the moment. Any help improving the plugin is very much appreciated. Check the TODO file for ideas.
 
