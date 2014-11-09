@@ -168,11 +168,15 @@ function! auditory#NormalModeMappings()
 	nnoremap <silent> z. :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr>z.
 	nnoremap <silent> zz :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr>zz
 	nnoremap <silent> zb :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr>zb
-	" nnoremap <silent> <c-d> :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . '<c-d>'<cr>
-	" nnoremap <silent> <c-u> :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . '<c-u>'<cr>
-	" nnoremap <silent> <c-f> :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . '<c-f>cr>
-	" nnoremap <silent> <c-b> :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . '<c-b>'<cr>
 	
+	" FIXME: Allow these scrolling commands to support counts. Was getting errors constructing them the other way
+	nnoremap <silent> <c-d> :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr><c-d>
+	nnoremap <silent> <c-u> :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr><c-u>
+	nnoremap <silent> <c-f> :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr><c-f>
+	
+	" FIXME: need to press <c-b> twice in order for it to work
+	nnoremap <silent> <c-b> :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr><c-b>
+
 	nnoremap <silent> H :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr>H
 	nnoremap <silent> M :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr>M
 	nnoremap <silent> L :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr>L
