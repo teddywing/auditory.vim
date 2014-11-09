@@ -125,6 +125,11 @@ function! s:NormalModeMappings()
 	nnoremap / :<c-u>call auditory#Play('./Resources/Normal_Mode/Search.wav')<cr>/
 	nnoremap n :<c-u>call auditory#Play('./Resources/Normal_Mode/Search.wav')<cr>n
 	nnoremap N :<c-u>call auditory#Play('./Resources/Normal_Mode/Search.wav')<cr>N
+	
+	nnoremap <silent> zt :<c-u>call auditory#Play('./Resources/Normal_Mode/Jump.wav')<cr>zt
+	nnoremap <silent> z. :<c-u>call auditory#Play('./Resources/Normal_Mode/Jump.wav')<cr>z.
+	nnoremap <silent> zz :<c-u>call auditory#Play('./Resources/Normal_Mode/Jump.wav')<cr>zz
+	nnoremap <silent> zb :<c-u>call auditory#Play('./Resources/Normal_Mode/Jump.wav')<cr>zb
 endfunction
 
 call s:NormalModeMappings()
