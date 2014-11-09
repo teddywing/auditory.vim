@@ -8,7 +8,6 @@ endfunction
 
 " Run system kill
 function! s:KillPid(pid)
-	echom a:pid
 	return system("kill " . a:pid)
 endfunction
 
