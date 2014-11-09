@@ -31,7 +31,7 @@ nnoremap <silent> <leader>i :call auditory#Play()<cr>
 
 nnoremap <leader>x :echo call s:GetPid()<cr>
 
-augroup auditoryeinsert_mode
+augroup auditory#insert_mode
 	autocmd!
 	autocmd InsertEnter * call s:PlayInsertEnter()
 	autocmd InsertLeave * call s:PlayInsertLeave()
