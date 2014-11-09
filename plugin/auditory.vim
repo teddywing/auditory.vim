@@ -133,6 +133,12 @@ function! s:NormalModeMappings()
 	nnoremap <silent> zz :<c-u>call auditory#Play('./Resources/Normal_Mode/Jump.wav')<cr>zz
 	nnoremap <silent> zb :<c-u>call auditory#Play('./Resources/Normal_Mode/Jump.wav')<cr>zb
 	
+	nnoremap <silent> <c-i> :<c-u>call auditory#Play('./Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . '<c-i>'<cr>
+	nnoremap <silent> <c-o> :<c-u>call auditory#Play('./Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . '<c-o>'<cr>
+	
+	nnoremap <silent> gg :<c-u>call auditory#Play('./Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . 'gg'<cr>
+	nnoremap <silent> G :<c-u>call auditory#Play('./Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count . 'G'<cr>
+	
 	nnoremap <silent> x :<c-u>call auditory#Play('./Resources/Normal_Mode/Delete.wav') \| exec 'normal!' v:count1 . 'x'<cr>
 	vnoremap <silent> x :<c-u>call auditory#Play('./Resources/Normal_Mode/Delete.wav') \| exec 'normal!' v:count1 . 'x'<cr>
 endfunction
