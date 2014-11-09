@@ -138,8 +138,10 @@ function! auditory#NormalModeMappings()
 	nnoremap <silent> gj :<c-u>call auditory#Play('/Resources/Normal_Mode/Down.wav') \| exec 'normal!' v:count1 . 'gj'<cr>
 	nnoremap <silent> gk :<c-u>call auditory#Play('/Resources/Normal_Mode/Up.wav') \| exec 'normal!' v:count1 . 'gk'<cr>
 	
-	" nnoremap <silent> <space> :<c-u>call auditory#Play('/Resources/Normal_Mode/Down.wav') \| exec 'normal!' v:count1 . '<space>'<cr>
-	" nnoremap <silent> <bs> :<c-u>call auditory#Play('/Resources/Normal_Mode/Up.wav') \| exec 'normal!' v:count1 . '<bs>'<cr>
+	nnoremap <silent> <space> :<c-u>call auditory#Play('/Resources/Normal_Mode/Right.wav') \| exec 'normal!' v:count1 . '<space>'<cr>
+	
+	" FIXME: allow counts on the delete key
+	nnoremap <silent> <bs> :<c-u>call auditory#Play('/Resources/Normal_Mode/Left.wav')<cr><bs>
 	
 	nnoremap <silent> 0 :<c-u>call auditory#Play('/Resources/Normal_Mode/Left.wav')<cr>0
 	nnoremap <silent> ^ :<c-u>call auditory#Play('/Resources/Normal_Mode/Left.wav') \| exec 'normal!' v:count1 . '^'<cr>
