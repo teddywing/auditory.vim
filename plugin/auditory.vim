@@ -52,6 +52,18 @@ endfunction
 " auditory#InsertGalaxyFarFarAway()
 
 
+" Normal mode
+function! s:NormalModeMappings()
+	nnoremap <silent> h :<c-u>call auditory#Play('./Resources/Normal_Mode/Left.wav') \| exec 'normal!' v:count1 . 'h'<cr>
+	nnoremap <silent> j :<c-u>call auditory#Play('./Resources/Normal_Mode/Down.wav') \| exec 'normal!' v:count1 . 'j'<cr>
+	nnoremap <silent> k :<c-u>call auditory#Play('./Resources/Normal_Mode/Up.wav') \| exec 'normal!' v:count1 . 'k'<cr>
+	nnoremap <silent> l :<c-u>call auditory#Play('./Resources/Normal_Mode/Right.wav') \| exec 'normal!' v:count1 . 'l'<cr>
+endfunction
+
+call s:NormalModeMappings()
+
+
+
 augroup auditory#insert_mode
 	autocmd!
 	" autocmd InsertEnter * call s:PlayInsertEnter()
