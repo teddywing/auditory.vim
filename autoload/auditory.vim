@@ -158,6 +158,33 @@ function! auditory#ToggleGalaxyFarFarAway()
 endfunction
 
 
+" Operators
+" =========
+nnoremap <silent> d :set opfunc=<SID>Delete<CR>g@
+vnoremap <silent> d :<C-U>call <SID>Delete(visualmode(), 1)<CR>
+
+function! s:Delete(type, ...)
+	let sel_save = &selection
+	let &selection = "inclusive"
+	let reg_save = @@
+
+	call auditory#Play('/Resources/Normal_Mode/Delete.wav')
+
+	if a:0  " Invoked from Visual mode, use '< and '> marks.
+		silent exe "normal! `<" . a:type . "`>d"
+	elseif a:type == 'line'
+		silent exe "normal! '[V']d"
+	elseif a:type == 'block'
+		silent exe "normal! `[\<C-V>`]d"
+	else
+		silent exe "normal! `[v`]d"
+	endif
+
+	let &selection = sel_save
+	let @@ = reg_save
+endfunction
+
+
 " Normal mode
 " ===========
 
