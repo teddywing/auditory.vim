@@ -110,6 +110,9 @@ function! s:NormalModeMappings()
 	nnoremap <silent> gj :<c-u>call auditory#Play('/Resources/Normal_Mode/Down.wav') \| exec 'normal!' v:count1 . 'gj'<cr>
 	nnoremap <silent> gk :<c-u>call auditory#Play('/Resources/Normal_Mode/Up.wav') \| exec 'normal!' v:count1 . 'gk'<cr>
 	
+	" nnoremap <silent> <space> :<c-u>call auditory#Play('/Resources/Normal_Mode/Down.wav') \| exec 'normal!' v:count1 . '<space>'<cr>
+	" nnoremap <silent> <bs> :<c-u>call auditory#Play('/Resources/Normal_Mode/Up.wav') \| exec 'normal!' v:count1 . '<bs>'<cr>
+	
 	nnoremap <silent> 0 :<c-u>call auditory#Play('/Resources/Normal_Mode/Left.wav') \| exec 'normal!' v:count1 . '0'<cr>
 	nnoremap <silent> ^ :<c-u>call auditory#Play('/Resources/Normal_Mode/Left.wav') \| exec 'normal!' v:count1 . '^'<cr>
 	nnoremap <silent> _ :<c-u>call auditory#Play('/Resources/Normal_Mode/Left.wav') \| exec 'normal!' v:count1 . '_'<cr>
@@ -137,6 +140,10 @@ function! s:NormalModeMappings()
 	nnoremap <silent> z. :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr>z.
 	nnoremap <silent> zz :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr>zz
 	nnoremap <silent> zb :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr>zb
+	" nnoremap <silent> <c-d> :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . '<c-d>'<cr>
+	" nnoremap <silent> <c-u> :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . '<c-u>'<cr>
+	" nnoremap <silent> <c-f> :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . '<c-f>cr>
+	" nnoremap <silent> <c-b> :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . '<c-b>'<cr>
 	
 	nnoremap <silent> ( :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . '('<cr>
 	nnoremap <silent> ) :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . ')'<cr>
@@ -151,6 +158,11 @@ function! s:NormalModeMappings()
 	
 	nnoremap <silent> x :<c-u>call auditory#Play('/Resources/Normal_Mode/Delete.wav') \| exec 'normal!' v:count1 . 'x'<cr>
 	vnoremap <silent> x :<c-u>call auditory#Play('/Resources/Normal_Mode/Delete.wav') \| exec 'normal!' v:count1 . 'x'<cr>
+	" nnoremap <silent> d :<c-u>call auditory#Play('/Resources/Normal_Mode/Delete.wav') \| exec 'normal!' v:count1 . 'd'<cr>
+	" nnoremap <silent> d :<c-u>set opfunc=d \| call auditory#Play('/Resources/Normal_Mode/Delete.wav') \| exec 'normal!' v:count1 . @g<cr>
+	
+	" inoremap <silent> <c-p> <esc>:<c-u>call auditory#Play('/Resources/auto_complete.wav')<cr>a<c-p><c-p>
+	" inoremap <silent> <c-n> <esc>:<c-u>call auditory#Play('/Resources/auto_complete.wav')<cr>a<c-n><c-n>
 endfunction
 
 call s:NormalModeMappings()
