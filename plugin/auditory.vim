@@ -121,6 +121,10 @@ function! s:NormalModeMappings()
 	
 	nnoremap <silent> p :<c-u>call auditory#Play('./Resources/Normal_Mode/Paste.wav') \| exec 'normal!' v:count1 . 'p'<cr>
 	nnoremap <silent> P :<c-u>call auditory#Play('./Resources/Normal_Mode/Paste.wav') \| exec 'normal!' v:count1 . 'P'<cr>
+	
+	nnoremap / :<c-u>call auditory#Play('./Resources/Normal_Mode/Search.wav')<cr>/
+	nnoremap n :<c-u>call auditory#Play('./Resources/Normal_Mode/Search.wav')<cr>n
+	nnoremap N :<c-u>call auditory#Play('./Resources/Normal_Mode/Search.wav')<cr>N
 endfunction
 
 call s:NormalModeMappings()
