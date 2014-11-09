@@ -27,6 +27,8 @@ function! s:PlayInsertLeave()
 endfunction
 
 function! s:PlayScale()
+	let play_scale_previous_note = -1
+	let note = -1
 	let scale = [
 		\ '1_C#.wav',
 		\ '2_D#.wav',
@@ -37,7 +39,11 @@ function! s:PlayScale()
 		\ '7_B#.wav'
 	\ ]
 	
-	let note = system("echo $RANDOM % " . len(scale) . " | bc")
+	while play_scale_previous_note ==# note
+		let note = system("echo $RANDOM % " . len(scale) . " | bc")
+	endwhile
+	
+	let play_scale_previous_note = note
 	
 	call auditory#Play('./Resources/Scale_C#/' . scale[note])
 endfunction
