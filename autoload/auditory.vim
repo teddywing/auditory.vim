@@ -174,6 +174,10 @@ function! auditory#NormalModeMappings()
 	" nnoremap <silent> <c-f> :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . '<c-f>cr>
 	" nnoremap <silent> <c-b> :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . '<c-b>'<cr>
 	
+	nnoremap <silent> H :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr>H
+	nnoremap <silent> M :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr>M
+	nnoremap <silent> L :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr>L
+	
 	nnoremap <silent> ( :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . '('<cr>
 	nnoremap <silent> ) :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . ')'<cr>
 	nnoremap <silent> { :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . '{'<cr>
