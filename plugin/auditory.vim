@@ -12,13 +12,13 @@ function! s:KillPid(pid)
 endfunction
 
 " Play audio
-function! auditory#Play()
-	call system("mplayer ./private/test-track.mp3 &")
+function! auditory#Play(file)
+	call system("mplayer " . a:file . " &")
 endfunction
 
 " Insert mode functions
 function! s:PlayInsertEnter()
-	call auditory#Play()
+	call auditory#Play("./private/test-track.mp3")
 	let s:insert_mode_pid = s:GetPid()
 endfunction
 
