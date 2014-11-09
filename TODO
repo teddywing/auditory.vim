@@ -9,13 +9,13 @@ TODO
 	- Copy.wav
 	- Delete.wav
 	- Gotomark.wav
-	- Jump.wav
+	/ Jump.wav
 	- Mark.wav
 	- autocomplete
-	- space & backspace keys in normal mode
+	/ space & backspace keys in normal mode
 	- fFtT mappings
 - Sounds to add:
-	- Undo
+	v Undo
 	- Repeat
 	- Change case
 	- Back to normal mode
