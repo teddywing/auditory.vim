@@ -59,6 +59,9 @@ function! s:NormalModeMappings()
 	nnoremap <silent> k :<c-u>call auditory#Play('./Resources/Normal_Mode/Up.wav') \| exec 'normal!' v:count1 . 'k'<cr>
 	nnoremap <silent> l :<c-u>call auditory#Play('./Resources/Normal_Mode/Right.wav') \| exec 'normal!' v:count1 . 'l'<cr>
 	
+	nnoremap <silent> gj :<c-u>call auditory#Play('./Resources/Normal_Mode/Down.wav') \| exec 'normal!' v:count1 . 'gj'<cr>
+	nnoremap <silent> gk :<c-u>call auditory#Play('./Resources/Normal_Mode/Up.wav') \| exec 'normal!' v:count1 . 'gk'<cr>
+	
 	nnoremap <silent> b :<c-u>call auditory#Play('./Resources/Normal_Mode/Left.wav') \| exec 'normal!' v:count1 . 'b'<cr>
 	nnoremap <silent> w :<c-u>call auditory#Play('./Resources/Normal_Mode/Right.wav') \| exec 'normal!' v:count1 . 'w'<cr>
 	nnoremap <silent> e :<c-u>call auditory#Play('./Resources/Normal_Mode/Right.wav') \| exec 'normal!' v:count1 . 'e'<cr>
