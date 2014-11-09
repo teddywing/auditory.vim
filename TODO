@@ -3,5 +3,10 @@ TODO
 
 2014.11.09:
 - Fix bug where you can't yank to or paste from a register
+- Add visual mode sounds
+- Replace
 - Sounds to add:
 	- Undo
+	- Repeat
+	- Change case
+	- Back to normal mode
