@@ -26,11 +26,31 @@ function! s:PlayInsertLeave()
 	call s:KillPid(s:insert_mode_pid)
 endfunction
 
+function! s:PlayScale()
+	let scale = [
+		\ '1_C#.wav',
+		\ '2_D#.wav',
+		\ '3_E#.wav',
+		\ '4_F#.wav',
+		\ '5_G#.wav',
+		\ '6_A#.wav',
+		\ '7_B#.wav'
+	\ ]
+	
+	let note = system("echo $RANDOM % " . len(scale) . " | bc")
+	
+	call auditory#Play('./Resources/Scale_C#/' . scale[note])
+endfunction
+
+
+" auditory#InsertGalaxyFarFarAway()
+
 
 augroup auditory#insert_mode
 	autocmd!
-	autocmd InsertEnter * call s:PlayInsertEnter()
-	autocmd InsertLeave * call s:PlayInsertLeave()
+	" autocmd InsertEnter * call s:PlayInsertEnter()
+	" autocmd InsertLeave * call s:PlayInsertLeave()
+	autocmd CursorMovedI * call s:PlayScale()
 augroup END
 
 
