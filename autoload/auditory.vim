@@ -195,4 +195,9 @@ function! auditory#NormalModeMappings()
 	
 	" inoremap <silent> <c-p> <esc>:<c-u>call auditory#Play('/Resources/auto_complete.wav')<cr>a<c-p><c-p>
 	" inoremap <silent> <c-n> <esc>:<c-u>call auditory#Play('/Resources/auto_complete.wav')<cr>a<c-n><c-n>
+	
+	nnoremap <silent> u :<c-u>call auditory#Play('/Resources/Normal_Mode/Undo.wav') \| exec 'normal!' v:count1 . 'u'<cr>
+	
+	" Note: redo doesn't currently support a count because the `v:count1` was giving me an error
+	nnoremap <silent> <c-r> :<c-u>call auditory#Play('/Resources/Normal_Mode/Redo.wav')<cr><c-r>
 endfunction
