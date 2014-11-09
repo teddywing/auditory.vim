@@ -49,7 +49,51 @@ function! s:PlayScale()
 endfunction
 
 
-" auditory#InsertGalaxyFarFarAway()
+let s:galaxy_far_far_away_index = 0
+function! s:GalaxyFarFarAway()
+	let cantina = [
+		\ 'Cantina_1.1.wav',
+		\ 'Cantina_1.2.wav',
+		\ 'Cantina_1.3.wav',
+		\ 'Cantina_1.4.wav',
+		\ 'Cantina_2.1.wav',
+		\ 'Cantina_2.2.wav',
+		\ 'Cantina_2.3.wav',
+		\ 'Cantina_2.4.wav',
+		\ 'Cantina_3.1.wav',
+		\ 'Cantina_3.2.wav',
+		\ 'Cantina_3.3.wav',
+		\ 'Cantina_3.4.wav',
+		\ 'Cantina_4.1.wav',
+		\ 'Cantina_4.2.wav',
+		\ 'Cantina_4.3.wav',
+		\ 'Cantina_4.4.wav',
+		\ 'Cantina_5.1.wav',
+		\ 'Cantina_5.2.wav',
+		\ 'Cantina_5.3.wav',
+		\ 'Cantina_5.4.wav',
+		\ 'Cantina_6.1.wav',
+		\ 'Cantina_6.2.wav',
+		\ 'Cantina_6.3.wav',
+		\ 'Cantina_6.4.wav',
+		\ 'Cantina_7.1.wav',
+		\ 'Cantina_7.2.wav',
+		\ 'Cantina_7.3.wav',
+		\ 'Cantina_7.4.wav',
+		\ 'Cantina_8.1.wav',
+		\ 'Cantina_8.2.wav',
+		\ 'Cantina_8.3.wav',
+		\ 'Cantina_8.4.wav'
+	\ ]
+	
+	call auditory#Play('./Resources/Cantina/' . cantina[s:galaxy_far_far_away_index])
+	
+	let s:galaxy_far_far_away_index += 1
+
+	if s:galaxy_far_far_away_index >= len(cantina)
+		let s:galaxy_far_far_away_index = 0
+	endif
+endfunction
 
 
 " Normal mode
@@ -84,7 +128,8 @@ augroup auditory#insert_mode
 	autocmd!
 	" autocmd InsertEnter * call s:PlayInsertEnter()
 	" autocmd InsertLeave * call s:PlayInsertLeave()
-	autocmd CursorMovedI * call s:PlayScale()
+	" autocmd CursorMovedI * call s:PlayScale()
+	autocmd CursorMovedI * call <SID>GalaxyFarFarAway()
 augroup END
 
 
