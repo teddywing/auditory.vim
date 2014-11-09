@@ -169,13 +169,34 @@ call s:NormalModeMappings()
 
 
 
+let s:galaxy_far_far_away = 0
+function! auditory#ToggleGalaxyFarFarAway()
+	if s:galaxy_far_far_away
+		augroup auditory#insert_mode
+			autocmd!
+			autocmd CursorMovedI * call <SID>PlayScale()
+		augroup END
+		let s:galaxy_far_far_away = 0
+	else
+		augroup auditory#insert_mode
+			autocmd!
+			autocmd CursorMovedI * call <SID>GalaxyFarFarAway()
+		augroup END
+		let s:galaxy_far_far_away = 1
+	endif
+endfunction
+
+
+
 augroup auditory#insert_mode
 	autocmd!
 	" autocmd InsertEnter * call s:PlayInsertEnter()
 	" autocmd InsertLeave * call s:PlayInsertLeave()
-	" autocmd CursorMovedI * call s:PlayScale()
-	autocmd CursorMovedI * call <SID>GalaxyFarFarAway()
+	autocmd CursorMovedI * call <SID>PlayScale()
 augroup END
+
+
+command! AuditoryToggleGalaxyFarFarAway call auditory#ToggleGalaxyFarFarAway()
 
 
 nnoremap <leader>so :source %<cr>
