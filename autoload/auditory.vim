@@ -39,71 +39,70 @@ function! s:PlayInsertLeave()
 endfunction
 
 
+let s:scale = [
+	\ '1_C#.wav',
+	\ '2_D#.wav',
+	\ '3_E#.wav',
+	\ '4_F#.wav',
+	\ '5_G#.wav',
+	\ '6_A#.wav',
+	\ '7_B#.wav'
+\ ]
 function! auditory#PlayScale()
 	let play_scale_previous_note = -1
 	let note = -1
-	let scale = [
-		\ '1_C#.wav',
-		\ '2_D#.wav',
-		\ '3_E#.wav',
-		\ '4_F#.wav',
-		\ '5_G#.wav',
-		\ '6_A#.wav',
-		\ '7_B#.wav'
-	\ ]
 	
 	while play_scale_previous_note ==# note
-		let note = system("echo $RANDOM % " . len(scale) . " | bc")
+		let note = system("echo $RANDOM % " . len(s:scale) . " | bc")
 	endwhile
 	
 	let play_scale_previous_note = note
 	
-	call auditory#Play('/Resources/Scale_C#/' . scale[note])
+	call auditory#Play('/Resources/Scale_C#/' . s:scale[note])
 endfunction
 
 
 let s:galaxy_far_far_away_index = 0
+let s:cantina = [
+	\ 'Cantina_1.1.wav',
+	\ 'Cantina_1.2.wav',
+	\ 'Cantina_1.3.wav',
+	\ 'Cantina_1.4.wav',
+	\ 'Cantina_2.1.wav',
+	\ 'Cantina_2.2.wav',
+	\ 'Cantina_2.3.wav',
+	\ 'Cantina_2.4.wav',
+	\ 'Cantina_3.1.wav',
+	\ 'Cantina_3.2.wav',
+	\ 'Cantina_3.3.wav',
+	\ 'Cantina_3.4.wav',
+	\ 'Cantina_4.1.wav',
+	\ 'Cantina_4.2.wav',
+	\ 'Cantina_4.3.wav',
+	\ 'Cantina_4.4.wav',
+	\ 'Cantina_5.1.wav',
+	\ 'Cantina_5.2.wav',
+	\ 'Cantina_5.3.wav',
+	\ 'Cantina_5.4.wav',
+	\ 'Cantina_6.1.wav',
+	\ 'Cantina_6.2.wav',
+	\ 'Cantina_6.3.wav',
+	\ 'Cantina_6.4.wav',
+	\ 'Cantina_7.1.wav',
+	\ 'Cantina_7.2.wav',
+	\ 'Cantina_7.3.wav',
+	\ 'Cantina_7.4.wav',
+	\ 'Cantina_8.1.wav',
+	\ 'Cantina_8.2.wav',
+	\ 'Cantina_8.3.wav',
+	\ 'Cantina_8.4.wav'
+\ ]
 function! s:GalaxyFarFarAway()
-	let cantina = [
-		\ 'Cantina_1.1.wav',
-		\ 'Cantina_1.2.wav',
-		\ 'Cantina_1.3.wav',
-		\ 'Cantina_1.4.wav',
-		\ 'Cantina_2.1.wav',
-		\ 'Cantina_2.2.wav',
-		\ 'Cantina_2.3.wav',
-		\ 'Cantina_2.4.wav',
-		\ 'Cantina_3.1.wav',
-		\ 'Cantina_3.2.wav',
-		\ 'Cantina_3.3.wav',
-		\ 'Cantina_3.4.wav',
-		\ 'Cantina_4.1.wav',
-		\ 'Cantina_4.2.wav',
-		\ 'Cantina_4.3.wav',
-		\ 'Cantina_4.4.wav',
-		\ 'Cantina_5.1.wav',
-		\ 'Cantina_5.2.wav',
-		\ 'Cantina_5.3.wav',
-		\ 'Cantina_5.4.wav',
-		\ 'Cantina_6.1.wav',
-		\ 'Cantina_6.2.wav',
-		\ 'Cantina_6.3.wav',
-		\ 'Cantina_6.4.wav',
-		\ 'Cantina_7.1.wav',
-		\ 'Cantina_7.2.wav',
-		\ 'Cantina_7.3.wav',
-		\ 'Cantina_7.4.wav',
-		\ 'Cantina_8.1.wav',
-		\ 'Cantina_8.2.wav',
-		\ 'Cantina_8.3.wav',
-		\ 'Cantina_8.4.wav'
-	\ ]
-	
-	call auditory#Play('/Resources/Cantina/' . cantina[s:galaxy_far_far_away_index])
+	call auditory#Play('/Resources/Cantina/' . s:cantina[s:galaxy_far_far_away_index])
 	
 	let s:galaxy_far_far_away_index += 1
 
-	if s:galaxy_far_far_away_index >= len(cantina)
+	if s:galaxy_far_far_away_index >= len(s:cantina)
 		let s:galaxy_far_far_away_index = 0
 	endif
 endfunction
