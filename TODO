@@ -3,3 +3,5 @@ TODO
 
 2014.11.09:
 - Fix bug where you can't yank to or paste from a register
+- Sounds to add:
+	- Undo
