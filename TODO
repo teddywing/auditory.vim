@@ -1,6 +1,14 @@
 TODO
 ====
 
+2014.11.10:
+- Make `dd` work to delete a line
+- Checking whether mplayer is installed and send an error if not
+- Adding some docs
+- Global setting for Galaxy Far Far Away mode
+- Add an easy way to turn the plugin on and off without having to disable it manually
+
+
 2014.11.09:
 - Fix bug where you can't yank to or paste from a register
 - Add visual mode sounds
