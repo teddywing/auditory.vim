@@ -161,6 +161,7 @@ endfunction
 " Operators
 " =========
 nnoremap <silent> d :set opfunc=<SID>Delete<CR>g@
+nnoremap <silent> dd :set opfunc=<SID>DeleteLine<CR>g@$
 vnoremap <silent> d :<C-U>call <SID>Delete(visualmode(), 1)<CR>
 
 function! s:Delete(type, ...)
@@ -182,6 +183,10 @@ function! s:Delete(type, ...)
 
 	let &selection = sel_save
 	let @@ = reg_save
+endfunction
+
+function! s:DeleteLine(type)
+	call <SID>Delete('line')
 endfunction
 
 
