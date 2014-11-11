@@ -2,7 +2,7 @@ TODO
 ====
 
 2014.11.10:
-- Make `dd` work to delete a line
+v Make `dd` work to delete a line
 - Checking whether mplayer is installed and send an error if not
 - Adding some docs
 - Global setting for Galaxy Far Far Away mode
