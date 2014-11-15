@@ -40,13 +40,27 @@ endfunction
 
 
 let s:scale = [
-	\ '1_C#.wav',
-	\ '2_D#.wav',
-	\ '3_E#.wav',
-	\ '4_F#.wav',
-	\ '5_G#.wav',
-	\ '6_A#.wav',
-	\ '7_B#.wav'
+	\ 'C#3.wav',
+	\ 'C#4.wav',
+	\ 'C#5.wav',
+	\ 'D#3.wav',
+	\ 'D#4.wav',
+	\ 'D#5.wav',
+	\ 'E#3.wav',
+	\ 'E#4.wav',
+	\ 'E#5.wav',
+	\ 'F#3.wav',
+	\ 'F#4.wav',
+	\ 'F#5.wav',
+	\ 'G#3.wav',
+	\ 'G#4.wav',
+	\ 'G#5.wav',
+	\ 'A#3.wav',
+	\ 'A#4.wav',
+	\ 'A#5.wav',
+	\ 'B#3.wav',
+	\ 'B#4.wav',
+	\ 'B#5.wav'
 \ ]
 function! auditory#PlayScale()
 	let play_scale_previous_note = -1
@@ -130,7 +144,7 @@ let s:cantina = [
 	\ 'Cantina_16.4.wav'
 \ ]
 function! s:GalaxyFarFarAway()
-	call auditory#Play('/Resources/Cantina/' . s:cantina[s:galaxy_far_far_away_index])
+	call auditory#Play('/Resources/Songs/Cantina/' . s:cantina[s:galaxy_far_far_away_index])
 	
 	let s:galaxy_far_far_away_index += 1
 
