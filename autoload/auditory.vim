@@ -144,7 +144,7 @@ let s:cantina = [
 	\ 'Cantina_16.4.wav'
 \ ]
 function! s:GalaxyFarFarAway()
-	call auditory#Play('/Resources/Cantina/' . s:cantina[s:galaxy_far_far_away_index])
+	call auditory#Play('/Resources/Songs/Cantina/' . s:cantina[s:galaxy_far_far_away_index])
 	
 	let s:galaxy_far_far_away_index += 1
 
