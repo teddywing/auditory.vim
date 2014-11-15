@@ -13,6 +13,13 @@ Created at Music Hack Day Boston 2014.
 Requires [mplayer](http://www.mplayerhq.hu/).
 
 
+## Installation
+The plugin can be installed using any of the various Vim plugin managers. If you use [pathogen](https://github.com/tpope/vim-pathogen), you can run the following to install:
+
+	cd ~/.vim/bundle
+	git clone https://github.com/teddywing/auditory.vim.git
+
+
 ## Contributing
 The code is a bit hackish at the moment. Any help improving the plugin is very much appreciated. Check the TODO file for ideas.
 
