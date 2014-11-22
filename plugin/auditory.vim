@@ -1,3 +1,10 @@
+" Require mplayer otherwise fail
+if !executable('mplayer')
+	echomsg 'Auditory.vim requires `mplayer` to be installed'
+	finish
+endif
+
+
 augroup auditory#insert_mode
 	autocmd!
 	autocmd CursorMovedI * call auditory#PlayScale()
