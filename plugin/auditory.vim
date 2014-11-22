@@ -1,6 +1,6 @@
 " Require mplayer otherwise fail
 if !executable('mplayer')
-	echoerr 'Auditory.vim requires `mplayer` to be installed'
+	echomsg 'Auditory.vim requires `mplayer` to be installed'
 	finish
 endif
 
