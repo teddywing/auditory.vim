@@ -1,6 +1,11 @@
 TODO
 ====
 
+2015.07.14:
+- Use Vim's `maparg()` to store user mappings so that we can create a toggle 
+  command that restores pre-plugin mappings
+
+
 2014.11.12:
 v Use new sound files for regular and Cantina insert mode (2014.11.15)
 
