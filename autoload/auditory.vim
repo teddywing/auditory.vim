@@ -468,13 +468,14 @@ endfunction
 " If users have a custom mapping for any of the commands we need, store the
 " mapping so we can map to it after playing audio and so we can restore the
 " user's mappings when the plugin is toggled off.
-function! auditory#StoreUserMappings()
-	for [key, value] in items(s:mappings)
-		let l:map_from = has_key(value, 'map_from') ? value.map_from : key
+function! auditory#StoreUserMapping(map_from)
+	if !has_key(s:mappings[a:map_from], 'user_mapping')
+		let l:map_from = has_key(s:mappings[a:map_from], 'map_from') ?
+			\ s:mappings[a:map_from].map_from : a:map_from
 		let l:user_mapping = maparg(l:map_from)
 		
 		if l:user_mapping
-			let value.user_mapping = l:user_mapping
+			let s:mappings[a:map_from].user_mapping = l:user_mapping
 		endif
-	endfor
+	endif
 endfunction
