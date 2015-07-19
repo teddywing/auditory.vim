@@ -20,4 +20,4 @@ augroup END
 command! AuditoryToggleGalaxyFarFarAway call auditory#ToggleGalaxyFarFarAway()
 
 
-call auditory#AssignNormalModeMappings()
+call auditory#AssignMappings()

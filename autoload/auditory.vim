@@ -202,8 +202,8 @@ function! s:DeleteLine(type)
 endfunction
 
 
-" Normal mode
-" ===========
+" Standard Mappings
+" =================
 
 let s:mappings = {}
 let s:mappings['h'] = {
@@ -440,7 +440,7 @@ let s:mappings['<c-r>'] = {
 	\ 'map_to': "<c-r>",
 \ }
 
-function! auditory#AssignNormalModeMappings()
+function! auditory#AssignMappings()
 	for [key, value] in items(s:mappings)
 		" If this an `execute` mapping, add a pipe.
 		" Otherwise <cr> to exit command mode.
