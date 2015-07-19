@@ -304,22 +304,27 @@ let s:mappings['P'] = {
 
 let s:mappings['/'] = {
 	\ 'audio': '/Resources/Normal_Mode/Search.wav',
+	\ 'silent': 0,
 	\ 'map_to': "/",
 \ }
 let s:mappings['n'] = {
 	\ 'audio': '/Resources/Normal_Mode/Search.wav',
+	\ 'silent': 0,
 	\ 'map_to': "n",
 \ }
 let s:mappings['N'] = {
 	\ 'audio': '/Resources/Normal_Mode/Search.wav',
+	\ 'silent': 0,
 	\ 'map_to': "N",
 \ }
 let s:mappings['#'] = {
 	\ 'audio': '/Resources/Normal_Mode/Search.wav',
+	\ 'silent': 0,
 	\ 'map_to': "#",
 \ }
 let s:mappings['*'] = {
 	\ 'audio': '/Resources/Normal_Mode/Search.wav',
+	\ 'silent': 0,
 	\ 'map_to': "*",
 \ }
 
@@ -447,7 +452,13 @@ function! auditory#AssignNormalModeMappings()
 		" If `map_from` is specified, we can't rely on `key` to provide it
 		let l:map_from = has_key(value, 'map_from') ? value.map_from : key
 		
-		execute l:cmd . ' <silent>' . l:map_from .
+		" Default to <silent> unless the mapping explicitly calls for a value
+		let l:silence = '<silent>'
+		if has_key(value, 'silent')
+			let l:silence = value.silent ? l:silence : ''
+		endif
+		
+		execute l:cmd . ' ' . l:silence . ' ' . l:map_from .
 			\ ' :<c-u>call auditory#Play("' . value.audio . '")' .
 			\ l:pipe . value.map_to
 	endfor
