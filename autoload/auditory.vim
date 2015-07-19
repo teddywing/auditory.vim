@@ -435,9 +435,17 @@ let s:mappings['<c-r>'] = {
 
 function! auditory#AssignNormalModeMappings()
 	for [key, value] in items(s:mappings)
-		" If this an `execute` mapping, add a pipe
-		let l:pipe = match(value.map_to, 'exec') !=# -1 ? ' \| ' : ''
+		let l:pipe = ''
+		let l:silence = ''
 		
-		execute 'nmap <silent> ' . key . ' :<c-u>call auditory#Play("' . value.audio . '")' . l:pipe . value.map_to
+		" If this an `execute` mapping
+		if match(value.map_to, 'exec') !=# -1
+			let l:pipe = ' \| '
+			let l:silence = '<silent>'
+		endif
+		
+		execute 'nmap ' . l:silence . ' ' . key .
+			\ ' :<c-u>call auditory#Play("' . value.audio . '")' .
+			\ l:pipe . value.map_to
 	endfor
 endfunction
