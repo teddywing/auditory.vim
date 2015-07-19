@@ -438,7 +438,7 @@ function! auditory#AssignNormalModeMappings()
 		" If this an `execute` mapping, add a pipe
 		let l:pipe = match(value.map_to, 'exec') !=# -1 ? ' \| ' : ''
 		
-		execute 'nmap <silent>' . key .
+		execute 'nnoremap <silent>' . key .
 			\ ' :<c-u>call auditory#Play("' . value.audio . '")' .
 			\ l:pipe . value.map_to
 	endfor
