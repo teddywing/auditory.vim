@@ -412,10 +412,12 @@ let s:mappings['x'] = {
 	\ 'audio': '/Resources/Normal_Mode/Delete.wav',
 	\ 'map_to': "exec 'normal!' v:count1 . 'x'<cr>",
 \ }
-" 	let s:mappings['x'] = {
-" 	\ 'audio': '/Resources/Normal_Mode/Delete.wav',
-" 	\ 'map_to': "exec 'normal!' v:count1 . 'x'<cr>",
-" \ }
+let s:mappings['v_x'] = {
+	\ 'audio': '/Resources/Normal_Mode/Delete.wav',
+	\ 'map_command': 'vnoremap',
+	\ 'map_from': 'x',
+	\ 'map_to': "exec 'normal!' v:count1 . 'x'<cr>",
+\ }
 " nnoremap <silent> d :<c-u>call auditory#Play('/Resources/Normal_Mode/Delete.wav') \| exec 'normal!' v:count1 . 'd'<cr>
 " nnoremap <silent> d :<c-u>set opfunc=d \| call auditory#Play('/Resources/Normal_Mode/Delete.wav') \| exec 'normal!' v:count1 . @g<cr>
 
@@ -439,7 +441,13 @@ function! auditory#AssignNormalModeMappings()
 		" Otherwise <cr> to exit command mode.
 		let l:pipe = match(value.map_to, 'exec') !=# -1 ? ' \| ' : '<cr>'
 		
-		execute 'nnoremap <silent>' . key .
+		" Default to nnoremap
+		let l:cmd = has_key(value, 'map_command') ? value.map_command : 'nnoremap'
+		
+		" If `map_from` is specified, we can't rely on `key` to provide it
+		let l:map_from = has_key(value, 'map_from') ? value.map_from : key
+		
+		execute l:cmd . ' <silent>' . l:map_from .
 			\ ' :<c-u>call auditory#Play("' . value.audio . '")' .
 			\ l:pipe . value.map_to
 	endfor
