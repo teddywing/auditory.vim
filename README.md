@@ -26,7 +26,7 @@ The code is a bit hackish at the moment. Any help improving the plugin is very m
 
 ## Contributors
 - [Spencer Bateman](https://soundcloud.com/spencerbateman)
-- [Mackenzie Denkerm](https://soundcloud.com/mackenzie-denker)
+- [Mackenzie Denker](https://soundcloud.com/mackenzie-denker)
 
 
 ## License
