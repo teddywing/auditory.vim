@@ -479,3 +479,14 @@ function! auditory#StoreUserMapping(map_from)
 		endif
 	endif
 endfunction
+
+
+function! auditory#Unmap()
+	for [key, value] in items(s:mappings)
+		let l:cmd = has_key(value, 'map_command') ? value.map_command : 'nnoremap'
+		
+		if l:cmd ==# 'nnoremap'
+			execute 'nunmap ' . key
+		endif
+	endfor
+endfunction
