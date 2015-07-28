@@ -18,6 +18,7 @@ augroup END
 
 
 command! AuditoryToggleGalaxyFarFarAway call auditory#ToggleGalaxyFarFarAway()
+command! AuditoryOff call auditory#Unmap()
 
 
 call auditory#AssignMappings()
