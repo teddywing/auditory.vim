@@ -442,6 +442,8 @@ let s:mappings['<c-r>'] = {
 
 function! auditory#AssignMappings()
 	for [key, value] in items(s:mappings)
+		call auditory#StoreUserMapping(key)
+		
 		" If this an `execute` mapping, add a pipe.
 		" Otherwise <cr> to exit command mode.
 		let l:pipe = match(value.map_to, 'exec') !=# -1 ? ' \| ' : '<cr>'
@@ -472,9 +474,11 @@ function! auditory#StoreUserMapping(map_from)
 	if !has_key(s:mappings[a:map_from], 'user_mapping')
 		let l:map_from = has_key(s:mappings[a:map_from], 'map_from') ?
 			\ s:mappings[a:map_from].map_from : a:map_from
-		let l:user_mapping = maparg(l:map_from)
+		let l:map_mode = has_key(s:mappings[a:map_from], 'map_command') ?
+			\ s:mappings[a:map_from].map_command[0] : 'n'
+		let l:user_mapping = maparg(l:map_from, l:map_mode)
 		
-		if l:user_mapping
+		if l:user_mapping !=# ''
 			let s:mappings[a:map_from].user_mapping = l:user_mapping
 		endif
 	endif
@@ -484,9 +488,14 @@ endfunction
 function! auditory#Unmap()
 	for [key, value] in items(s:mappings)
 		let l:cmd = has_key(value, 'map_command') ? value.map_command : 'nnoremap'
+		let l:user_mapping = get(value, 'user_mapping', '')
 		
 		if l:cmd ==# 'nnoremap'
 			execute 'nunmap ' . key
+		endif
+		
+		if l:user_mapping !=# ''
+			execute l:cmd . ' ' . get(value, 'map_from', key) . ' ' . value.user_mapping
 		endif
 	endfor
 endfunction
