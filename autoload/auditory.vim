@@ -208,220 +208,201 @@ endfunction
 let s:mappings = {}
 let s:mappings['h'] = {
 	\ 'audio': '/Resources/Normal_Mode/Left.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . 'h'<cr>",
+	\ 'count': 1,
 \ }
 let s:mappings['j'] = {
 	\ 'audio': '/Resources/Normal_Mode/Down.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . 'j'<cr>",
+	\ 'count': 1,
 \ }
 let s:mappings['k'] = {
 	\ 'audio': '/Resources/Normal_Mode/Up.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . 'k'<cr>",
+	\ 'count': 1,
 \ }
 let s:mappings['l'] = {
 	\ 'audio': '/Resources/Normal_Mode/Right.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . 'l'<cr>",
+	\ 'count': 1,
 \ }
 
 let s:mappings['gj'] = {
 	\ 'audio': '/Resources/Normal_Mode/Down.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . 'gj'<cr>",
+	\ 'count': 1,
 \ }
 let s:mappings['gk'] = {
 	\ 'audio': '/Resources/Normal_Mode/Up.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . 'gk'<cr>",
+	\ 'count': 1,
 \ }
 
 let s:mappings['<space>'] = {
 	\ 'audio': '/Resources/Normal_Mode/Right.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . '<space>'<cr>",
+	\ 'count': 1,
 \ }
 
 " FIXME: allow counts on the delete key
 let s:mappings['<bs>'] = {
 	\ 'audio': '/Resources/Normal_Mode/Left.wav',
-	\ 'map_to': "<bs>",
 \ }
 
 let s:mappings['0'] = {
 	\ 'audio': '/Resources/Normal_Mode/Left.wav',
-	\ 'map_to': "0",
 \ }
 let s:mappings['^'] = {
 	\ 'audio': '/Resources/Normal_Mode/Left.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . '^'<cr>",
+	\ 'count': 1,
 \ }
 let s:mappings['_'] = {
 	\ 'audio': '/Resources/Normal_Mode/Left.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . '_'<cr>",
+	\ 'count': 1,
 \ }
 let s:mappings['$'] = {
 	\ 'audio': '/Resources/Normal_Mode/Right.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . '$'<cr>",
+	\ 'count': 1,
 \ }
 let s:mappings['g_'] = {
 	\ 'audio': '/Resources/Normal_Mode/Right.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . 'g_'<cr>",
+	\ 'count': 1,
 \ }
 let s:mappings['%'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'map_to': "%",
 \ }
 
 let s:mappings['b'] = {
 	\ 'audio': '/Resources/Normal_Mode/Left.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . 'b'<cr>",
+	\ 'count': 1,
 \ }
 let s:mappings['w'] = {
 	\ 'audio': '/Resources/Normal_Mode/Right.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . 'w'<cr>",
+	\ 'count': 1,
 \ }
 let s:mappings['e'] = {
 	\ 'audio': '/Resources/Normal_Mode/Right.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . 'e'<cr>",
+	\ 'count': 1,
 \ }
 let s:mappings['B'] = {
 	\ 'audio': '/Resources/Normal_Mode/Left.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . 'B'<cr>",
+	\ 'count': 1,
 \ }
 let s:mappings['W'] = {
 	\ 'audio': '/Resources/Normal_Mode/Right.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . 'W'<cr>",
+	\ 'count': 1,
 \ }
 let s:mappings['E'] = {
 	\ 'audio': '/Resources/Normal_Mode/Right.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . 'E'<cr>",
+	\ 'count': 1,
 \ }
 
 let s:mappings['p'] = {
 	\ 'audio': '/Resources/Normal_Mode/Paste.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . 'p'<cr>",
+	\ 'count': 1,
 \ }
 let s:mappings['P'] = {
 	\ 'audio': '/Resources/Normal_Mode/Paste.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . 'P'<cr>",
+	\ 'count': 1,
 \ }
 
 let s:mappings['/'] = {
 	\ 'audio': '/Resources/Normal_Mode/Search.wav',
 	\ 'silent': 0,
-	\ 'map_to': "/",
 \ }
 let s:mappings['n'] = {
 	\ 'audio': '/Resources/Normal_Mode/Search.wav',
 	\ 'silent': 0,
-	\ 'map_to': "n",
 \ }
 let s:mappings['N'] = {
 	\ 'audio': '/Resources/Normal_Mode/Search.wav',
 	\ 'silent': 0,
-	\ 'map_to': "N",
 \ }
 let s:mappings['#'] = {
 	\ 'audio': '/Resources/Normal_Mode/Search.wav',
 	\ 'silent': 0,
-	\ 'map_to': "#",
 \ }
 let s:mappings['*'] = {
 	\ 'audio': '/Resources/Normal_Mode/Search.wav',
 	\ 'silent': 0,
-	\ 'map_to': "*",
 \ }
 
 let s:mappings['zt'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'map_to': "zt",
 \ }
 let s:mappings['z.'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'map_to': "z.",
 \ }
 let s:mappings['zz'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'map_to': "zz",
 \ }
 let s:mappings['zb'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'map_to': "zb",
 \ }
 
 " FIXME: Allow these scrolling commands to support counts. Was getting errors constructing them the other way
 let s:mappings['<c-d>'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'map_to': "<c-d>",
 \ }
 let s:mappings['<c-u>'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'map_to': "<c-u>",
 \ }
 let s:mappings['<c-f>'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'map_to': "<c-f>",
 \ }
 
 " FIXME: need to press <c-b> twice in order for it to work
 let s:mappings['<c-b>'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'map_to': "<c-b>",
 \ }
 
 let s:mappings['H'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'map_to': "H",
 \ }
 let s:mappings['M'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'map_to': "M",
 \ }
 let s:mappings['L'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'map_to': "L",
 \ }
 
 let s:mappings['('] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . '('<cr>",
+	\ 'count': 1,
 \ }
 let s:mappings[')'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . ')'<cr>",
+	\ 'count': 1,
 \ }
 let s:mappings['{'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . '{'<cr>",
+	\ 'count': 1,
 \ }
 let s:mappings['}'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . '}'<cr>",
+	\ 'count': 1,
 \ }
 
 let s:mappings['<c-i>'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . '<c-i>'<cr>",
+	\ 'count': 1,
 \ }
 let s:mappings['<c-o>'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . '<c-o>'<cr>",
+	\ 'count': 1,
 \ }
 
 let s:mappings['gg'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . 'gg'<cr>",
+	\ 'count': 1,
 \ }
 let s:mappings['G'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'map_to': "exec 'normal!' v:count . 'G'<cr>",
+	\ 'count': 1,
 \ }
 
 let s:mappings['x'] = {
 	\ 'audio': '/Resources/Normal_Mode/Delete.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . 'x'<cr>",
+	\ 'count': 1,
 \ }
 let s:mappings['v_x'] = {
 	\ 'audio': '/Resources/Normal_Mode/Delete.wav',
 	\ 'map_command': 'vnoremap',
 	\ 'map_from': 'x',
-	\ 'map_to': "exec 'normal!' v:count1 . 'x'<cr>",
+	\ 'count': 1,
 \ }
 " nnoremap <silent> d :<c-u>call auditory#Play('/Resources/Normal_Mode/Delete.wav') \| exec 'normal!' v:count1 . 'd'<cr>
 " nnoremap <silent> d :<c-u>set opfunc=d \| call auditory#Play('/Resources/Normal_Mode/Delete.wav') \| exec 'normal!' v:count1 . @g<cr>
@@ -431,28 +412,34 @@ let s:mappings['v_x'] = {
 
 let s:mappings['u'] = {
 	\ 'audio': '/Resources/Normal_Mode/Undo.wav',
-	\ 'map_to': "exec 'normal!' v:count1 . 'u'<cr>",
+	\ 'count': 1,
 \ }
 
 " Note: redo doesn't currently support a count because the `v:count1` was giving me an error
 let s:mappings['<c-r>'] = {
 	\ 'audio': '/Resources/Normal_Mode/Redo.wav',
-	\ 'map_to': "<c-r>",
 \ }
 
 function! auditory#AssignMappings()
 	for [key, value] in items(s:mappings)
 		call auditory#StoreUserMapping(key)
 		
-		" If this an `execute` mapping, add a pipe.
-		" Otherwise <cr> to exit command mode.
-		let l:pipe = match(value.map_to, 'exec') !=# -1 ? ' \| ' : '<cr>'
-		
 		" Default to nnoremap
 		let l:cmd = has_key(value, 'map_command') ? value.map_command : 'nnoremap'
 		
 		" If `map_from` is specified, we can't rely on `key` to provide it
 		let l:map_from = has_key(value, 'map_from') ? value.map_from : key
+		
+		" Map to the same key unless a `map_to` is defined
+		let l:map_to = has_key(value, 'map_to') ? value.map_to : key
+		
+		let l:map_to_with_count = has_key(value, 'count') ?
+			\ "execute 'normal!' v:count1 .  '" . l:map_to . "'<cr>" :
+			\ l:map_to
+		
+		" If this an `execute` mapping, add a pipe.
+		" Otherwise <cr> to exit command mode.
+		let l:pipe = match(l:map_to_with_count , 'exec') !=# -1 ? ' \| ' : '<cr>'
 		
 		" Default to <silent> unless the mapping explicitly calls for a value
 		let l:silence = '<silent>'
@@ -462,7 +449,8 @@ function! auditory#AssignMappings()
 		
 		execute l:cmd . ' ' . l:silence . ' ' . l:map_from .
 			\ ' :<c-u>call auditory#Play("' . value.audio . '")' .
-			\ l:pipe . value.map_to
+			\ l:pipe .
+			\ l:map_to_with_count
 	endfor
 endfunction
 
