@@ -430,8 +430,16 @@ function! auditory#AssignMappings()
 		" If `map_from` is specified, we can't rely on `key` to provide it
 		let l:map_from = has_key(value, 'map_from') ? value.map_from : key
 		
-		" Map to the same key unless a `map_to` is defined
-		let l:map_to = has_key(value, 'map_to') ? value.map_to : key
+		" Map to key unless a `map_to` or user mapping is defined
+		if has_key(value, 'map_to')
+			let l:map_to = value.map_to
+		else
+			if has_key(value, 'user_mapping')
+				let l:map_to = value.user_mapping
+			else
+				let l:map_to = key
+			endif
+		endif
 		
 		let l:map_to_with_count = has_key(value, 'count') ?
 			\ "execute 'normal!' v:count1 .  '" . l:map_to . "'<cr>" :
