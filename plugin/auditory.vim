@@ -21,6 +21,6 @@ command! AuditoryOff call auditory#Unmap()
 command! AuditoryToggleGalaxyFarFarAway call auditory#ToggleGalaxyFarFarAway()
 
 
-if g:auditory_on ==# 1
+if g:auditory_on
 	call auditory#AssignMappings()
 endif
