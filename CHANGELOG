@@ -1,6 +1,15 @@
 CHANGELOG
 =========
 
+v0.1.0 (2015.08.16):
+	* Don't turn the sounds on by default when the plugin is loaded
+	* Add `g:auditory_on` config variable
+	* Add `g:auditory_galaxy_far_far_away` config variable
+	* Add `AuditoryOn`, `AuditoryOff`, and `AuditoryToggle` commands to turn
+	  sounds on and off
+	* Respect user mappings when remapping to add sounds
+	* Respect user mappings when unmapping to turn the plugin off
+
 v0.0.5 (2014.10.27):
 	* Don't reload the plugin if it's already loaded
 
