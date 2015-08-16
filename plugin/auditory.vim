@@ -11,8 +11,9 @@ if !executable('mplayer')
 endif
 
 
-command! AuditoryToggleGalaxyFarFarAway call auditory#ToggleGalaxyFarFarAway()
+command! AuditoryOn call auditory#AssignMappings()
 command! AuditoryOff call auditory#Unmap()
+command! AuditoryToggleGalaxyFarFarAway call auditory#ToggleGalaxyFarFarAway()
 
 
 call auditory#AssignMappings()
