@@ -11,9 +11,16 @@ if !executable('mplayer')
 endif
 
 
+if !exists('g:auditory_on')
+	let g:auditory_on = 0
+endif
+
+
 command! AuditoryOn call auditory#AssignMappings()
 command! AuditoryOff call auditory#Unmap()
 command! AuditoryToggleGalaxyFarFarAway call auditory#ToggleGalaxyFarFarAway()
 
 
-call auditory#AssignMappings()
+if g:auditory_on ==# 1
+	call auditory#AssignMappings()
+endif
