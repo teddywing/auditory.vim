@@ -18,6 +18,7 @@ endif
 
 command! AuditoryOn call auditory#AssignMappings()
 command! AuditoryOff call auditory#Unmap()
+command! AuditoryToggle call auditory#ToggleMappings()
 command! AuditoryToggleGalaxyFarFarAway call auditory#ToggleGalaxyFarFarAway()
 
 
