@@ -29,8 +29,3 @@ command! AuditoryToggleGalaxyFarFarAway call auditory#ToggleGalaxyFarFarAway()
 if g:auditory_on
 	call auditory#AssignMappings()
 endif
-
-if g:auditory_galaxy_far_far_away
-	let g:auditory_galaxy_far_far_away = 0
-	call auditory#ToggleGalaxyFarFarAway()
-endif

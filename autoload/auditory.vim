@@ -77,10 +77,8 @@ endfunction
 
 
 function! auditory#AssignInsertMappings()
-	augroup auditory#insert_mode
-		autocmd!
-		autocmd CursorMovedI * call auditory#PlayScale()
-	augroup END
+	let g:auditory_galaxy_far_far_away = !g:auditory_galaxy_far_far_away
+	call auditory#ToggleGalaxyFarFarAway()
 endfunction
 
 
