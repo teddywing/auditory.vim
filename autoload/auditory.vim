@@ -2,20 +2,6 @@
 let s:script_path = resolve(expand('<sfile>:p:h')) . '/..'
 
 
-" Pid
-" ===
-
-" Get most recent mplayer pid
-function! s:GetPid()
-	return system("ps | grep mplayer | head -n1 | awk '{printf $1}'")
-endfunction
-
-" Run system kill
-function! s:KillPid(pid)
-	return system("kill " . a:pid)
-endfunction
-
-
 " Play audio
 " ==========
 
@@ -26,18 +12,6 @@ endfunction
 
 " Insert mode
 " ===========
-
-" Old functions that would start a song when entering insert mode and stop the 
-" song when leaving insert mode.
-function! s:PlayInsertEnter()
-	call auditory#Play("/private/test-track.mp3")
-	let s:insert_mode_pid = s:GetPid()
-endfunction
-
-function! s:PlayInsertLeave()
-	call s:KillPid(s:insert_mode_pid)
-endfunction
-
 
 let s:scale = [
 	\ 'C#3.wav',
