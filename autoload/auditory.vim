@@ -169,20 +169,19 @@ function! s:GalaxyFarFarAway()
 endfunction
 
 
-let s:galaxy_far_far_away = 0
 function! auditory#ToggleGalaxyFarFarAway()
-	if s:galaxy_far_far_away
+	if g:auditory_galaxy_far_far_away
 		augroup auditory#insert_mode
 			autocmd!
 			autocmd CursorMovedI * call auditory#PlayScale()
 		augroup END
-		let s:galaxy_far_far_away = 0
+		let g:auditory_galaxy_far_far_away = 0
 	else
 		augroup auditory#insert_mode
 			autocmd!
 			autocmd CursorMovedI * call <SID>GalaxyFarFarAway()
 		augroup END
-		let s:galaxy_far_far_away = 1
+		let g:auditory_galaxy_far_far_away = 1
 	endif
 endfunction
 
