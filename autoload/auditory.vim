@@ -2,20 +2,6 @@
 let s:script_path = resolve(expand('<sfile>:p:h')) . '/..'
 
 
-" Pid
-" ===
-
-" Get most recent mplayer pid
-function! s:GetPid()
-	return system("ps | grep mplayer | head -n1 | awk '{printf $1}'")
-endfunction
-
-" Run system kill
-function! s:KillPid(pid)
-	return system("kill " . a:pid)
-endfunction
-
-
 " Play audio
 " ==========
 
@@ -26,18 +12,6 @@ endfunction
 
 " Insert mode
 " ===========
-
-" Old functions that would start a song when entering insert mode and stop the 
-" song when leaving insert mode.
-function! s:PlayInsertEnter()
-	call auditory#Play("/private/test-track.mp3")
-	let s:insert_mode_pid = s:GetPid()
-endfunction
-
-function! s:PlayInsertLeave()
-	call s:KillPid(s:insert_mode_pid)
-endfunction
-
 
 let s:scale = [
 	\ 'C#3.wav',
@@ -73,6 +47,19 @@ function! auditory#PlayScale()
 	let play_scale_previous_note = note
 	
 	call auditory#Play('/Resources/Scale_C#/' . s:scale[note])
+endfunction
+
+
+function! auditory#AssignInsertMappings()
+	let g:auditory_galaxy_far_far_away = !g:auditory_galaxy_far_far_away
+	call auditory#ToggleGalaxyFarFarAway()
+endfunction
+
+
+function! auditory#UnmapInsert()
+	augroup auditory#insert_mode
+		autocmd!
+	augroup END
 endfunction
 
 
@@ -154,29 +141,25 @@ function! s:GalaxyFarFarAway()
 endfunction
 
 
-let s:galaxy_far_far_away = 0
 function! auditory#ToggleGalaxyFarFarAway()
-	if s:galaxy_far_far_away
+	if g:auditory_galaxy_far_far_away
 		augroup auditory#insert_mode
 			autocmd!
 			autocmd CursorMovedI * call auditory#PlayScale()
 		augroup END
-		let s:galaxy_far_far_away = 0
+		let g:auditory_galaxy_far_far_away = 0
 	else
 		augroup auditory#insert_mode
 			autocmd!
 			autocmd CursorMovedI * call <SID>GalaxyFarFarAway()
 		augroup END
-		let s:galaxy_far_far_away = 1
+		let g:auditory_galaxy_far_far_away = 1
 	endif
 endfunction
 
 
 " Operators
 " =========
-nnoremap <silent> d :set opfunc=<SID>Delete<CR>g@
-nnoremap <silent> dd :set opfunc=<SID>DeleteLine<CR>g@$
-vnoremap <silent> d :<C-U>call <SID>Delete(visualmode(), 1)<CR>
 
 function! s:Delete(type, ...)
 	let sel_save = &selection
@@ -202,84 +185,340 @@ function! s:DeleteLine(type)
 endfunction
 
 
-" Normal mode
-" ===========
+" Standard Mappings
+" =================
 
-function! auditory#NormalModeMappings()
-	nnoremap <silent> h :<c-u>call auditory#Play('/Resources/Normal_Mode/Left.wav') \| exec 'normal!' v:count1 . 'h'<cr>
-	nnoremap <silent> j :<c-u>call auditory#Play('/Resources/Normal_Mode/Down.wav') \| exec 'normal!' v:count1 . 'j'<cr>
-	nnoremap <silent> k :<c-u>call auditory#Play('/Resources/Normal_Mode/Up.wav') \| exec 'normal!' v:count1 . 'k'<cr>
-	nnoremap <silent> l :<c-u>call auditory#Play('/Resources/Normal_Mode/Right.wav') \| exec 'normal!' v:count1 . 'l'<cr>
-	
-	nnoremap <silent> gj :<c-u>call auditory#Play('/Resources/Normal_Mode/Down.wav') \| exec 'normal!' v:count1 . 'gj'<cr>
-	nnoremap <silent> gk :<c-u>call auditory#Play('/Resources/Normal_Mode/Up.wav') \| exec 'normal!' v:count1 . 'gk'<cr>
-	
-	nnoremap <silent> <space> :<c-u>call auditory#Play('/Resources/Normal_Mode/Right.wav') \| exec 'normal!' v:count1 . '<space>'<cr>
-	
-	" FIXME: allow counts on the delete key
-	nnoremap <silent> <bs> :<c-u>call auditory#Play('/Resources/Normal_Mode/Left.wav')<cr><bs>
-	
-	nnoremap <silent> 0 :<c-u>call auditory#Play('/Resources/Normal_Mode/Left.wav')<cr>0
-	nnoremap <silent> ^ :<c-u>call auditory#Play('/Resources/Normal_Mode/Left.wav') \| exec 'normal!' v:count1 . '^'<cr>
-	nnoremap <silent> _ :<c-u>call auditory#Play('/Resources/Normal_Mode/Left.wav') \| exec 'normal!' v:count1 . '_'<cr>
-	nnoremap <silent> $ :<c-u>call auditory#Play('/Resources/Normal_Mode/Right.wav') \| exec 'normal!' v:count1 . '$'<cr>
-	nnoremap <silent> g_ :<c-u>call auditory#Play('/Resources/Normal_Mode/Right.wav') \| exec 'normal!' v:count1 . 'g_'<cr>
-	nnoremap <silent> % :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr>%
-	
-	nnoremap <silent> b :<c-u>call auditory#Play('/Resources/Normal_Mode/Left.wav') \| exec 'normal!' v:count1 . 'b'<cr>
-	nnoremap <silent> w :<c-u>call auditory#Play('/Resources/Normal_Mode/Right.wav') \| exec 'normal!' v:count1 . 'w'<cr>
-	nnoremap <silent> e :<c-u>call auditory#Play('/Resources/Normal_Mode/Right.wav') \| exec 'normal!' v:count1 . 'e'<cr>
-	nnoremap <silent> B :<c-u>call auditory#Play('/Resources/Normal_Mode/Left.wav') \| exec 'normal!' v:count1 . 'B'<cr>
-	nnoremap <silent> W :<c-u>call auditory#Play('/Resources/Normal_Mode/Right.wav') \| exec 'normal!' v:count1 . 'W'<cr>
-	nnoremap <silent> E :<c-u>call auditory#Play('/Resources/Normal_Mode/Right.wav') \| exec 'normal!' v:count1 . 'E'<cr>
-	
-	nnoremap <silent> p :<c-u>call auditory#Play('/Resources/Normal_Mode/Paste.wav') \| exec 'normal!' v:count1 . 'p'<cr>
-	nnoremap <silent> P :<c-u>call auditory#Play('/Resources/Normal_Mode/Paste.wav') \| exec 'normal!' v:count1 . 'P'<cr>
-	
-	nnoremap / :<c-u>call auditory#Play('/Resources/Normal_Mode/Search.wav')<cr>/
-	nnoremap n :<c-u>call auditory#Play('/Resources/Normal_Mode/Search.wav')<cr>n
-	nnoremap N :<c-u>call auditory#Play('/Resources/Normal_Mode/Search.wav')<cr>N
-	nnoremap # :<c-u>call auditory#Play('/Resources/Normal_Mode/Search.wav')<cr>#
-	nnoremap * :<c-u>call auditory#Play('/Resources/Normal_Mode/Search.wav')<cr>*
-	
-	nnoremap <silent> zt :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr>zt
-	nnoremap <silent> z. :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr>z.
-	nnoremap <silent> zz :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr>zz
-	nnoremap <silent> zb :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr>zb
-	
-	" FIXME: Allow these scrolling commands to support counts. Was getting errors constructing them the other way
-	nnoremap <silent> <c-d> :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr><c-d>
-	nnoremap <silent> <c-u> :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr><c-u>
-	nnoremap <silent> <c-f> :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr><c-f>
-	
-	" FIXME: need to press <c-b> twice in order for it to work
-	nnoremap <silent> <c-b> :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr><c-b>
+let s:mappings = {}
+let s:mappings['h'] = {
+	\ 'audio': '/Resources/Normal_Mode/Left.wav',
+	\ 'count': 1,
+\ }
+let s:mappings['j'] = {
+	\ 'audio': '/Resources/Normal_Mode/Down.wav',
+	\ 'count': 1,
+\ }
+let s:mappings['k'] = {
+	\ 'audio': '/Resources/Normal_Mode/Up.wav',
+	\ 'count': 1,
+\ }
+let s:mappings['l'] = {
+	\ 'audio': '/Resources/Normal_Mode/Right.wav',
+	\ 'count': 1,
+\ }
 
-	nnoremap <silent> H :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr>H
-	nnoremap <silent> M :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr>M
-	nnoremap <silent> L :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav')<cr>L
+let s:mappings['gj'] = {
+	\ 'audio': '/Resources/Normal_Mode/Down.wav',
+	\ 'count': 1,
+\ }
+let s:mappings['gk'] = {
+	\ 'audio': '/Resources/Normal_Mode/Up.wav',
+	\ 'count': 1,
+\ }
+
+let s:mappings['<space>'] = {
+	\ 'audio': '/Resources/Normal_Mode/Right.wav',
+	\ 'count': 1,
+\ }
+
+" FIXME: allow counts on the delete key
+let s:mappings['<bs>'] = {
+	\ 'audio': '/Resources/Normal_Mode/Left.wav',
+\ }
+
+let s:mappings['0'] = {
+	\ 'audio': '/Resources/Normal_Mode/Left.wav',
+\ }
+let s:mappings['^'] = {
+	\ 'audio': '/Resources/Normal_Mode/Left.wav',
+	\ 'count': 1,
+\ }
+let s:mappings['_'] = {
+	\ 'audio': '/Resources/Normal_Mode/Left.wav',
+	\ 'count': 1,
+\ }
+let s:mappings['$'] = {
+	\ 'audio': '/Resources/Normal_Mode/Right.wav',
+	\ 'count': 1,
+\ }
+let s:mappings['g_'] = {
+	\ 'audio': '/Resources/Normal_Mode/Right.wav',
+	\ 'count': 1,
+\ }
+let s:mappings['%'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+\ }
+
+let s:mappings['b'] = {
+	\ 'audio': '/Resources/Normal_Mode/Left.wav',
+	\ 'count': 1,
+\ }
+let s:mappings['w'] = {
+	\ 'audio': '/Resources/Normal_Mode/Right.wav',
+	\ 'count': 1,
+\ }
+let s:mappings['e'] = {
+	\ 'audio': '/Resources/Normal_Mode/Right.wav',
+	\ 'count': 1,
+\ }
+let s:mappings['B'] = {
+	\ 'audio': '/Resources/Normal_Mode/Left.wav',
+	\ 'count': 1,
+\ }
+let s:mappings['W'] = {
+	\ 'audio': '/Resources/Normal_Mode/Right.wav',
+	\ 'count': 1,
+\ }
+let s:mappings['E'] = {
+	\ 'audio': '/Resources/Normal_Mode/Right.wav',
+	\ 'count': 1,
+\ }
+
+let s:mappings['p'] = {
+	\ 'audio': '/Resources/Normal_Mode/Paste.wav',
+	\ 'count': 1,
+\ }
+let s:mappings['P'] = {
+	\ 'audio': '/Resources/Normal_Mode/Paste.wav',
+	\ 'count': 1,
+\ }
+
+let s:mappings['/'] = {
+	\ 'audio': '/Resources/Normal_Mode/Search.wav',
+	\ 'silent': 0,
+\ }
+let s:mappings['n'] = {
+	\ 'audio': '/Resources/Normal_Mode/Search.wav',
+	\ 'silent': 0,
+\ }
+let s:mappings['N'] = {
+	\ 'audio': '/Resources/Normal_Mode/Search.wav',
+	\ 'silent': 0,
+\ }
+let s:mappings['#'] = {
+	\ 'audio': '/Resources/Normal_Mode/Search.wav',
+	\ 'silent': 0,
+\ }
+let s:mappings['*'] = {
+	\ 'audio': '/Resources/Normal_Mode/Search.wav',
+	\ 'silent': 0,
+\ }
+
+let s:mappings['zt'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+\ }
+let s:mappings['z.'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+\ }
+let s:mappings['zz'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+\ }
+let s:mappings['zb'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+\ }
+
+" FIXME: Allow these scrolling commands to support counts. Was getting errors constructing them the other way
+let s:mappings['<c-d>'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+\ }
+let s:mappings['<c-u>'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+\ }
+let s:mappings['<c-f>'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+\ }
+
+" FIXME: need to press <c-b> twice in order for it to work
+let s:mappings['<c-b>'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+\ }
+
+let s:mappings['H'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+\ }
+let s:mappings['M'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+\ }
+let s:mappings['L'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+\ }
+
+let s:mappings['('] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+	\ 'count': 1,
+\ }
+let s:mappings[')'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+	\ 'count': 1,
+\ }
+let s:mappings['{'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+	\ 'count': 1,
+\ }
+let s:mappings['}'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+	\ 'count': 1,
+\ }
+
+let s:mappings['<c-i>'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+	\ 'count': 1,
+\ }
+let s:mappings['<c-o>'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+	\ 'count': 1,
+\ }
+
+let s:mappings['gg'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+	\ 'count': 1,
+\ }
+let s:mappings['G'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+	\ 'count': 1,
+\ }
+
+let s:mappings['x'] = {
+	\ 'audio': '/Resources/Normal_Mode/Delete.wav',
+	\ 'count': 1,
+\ }
+let s:mappings['v_x'] = {
+	\ 'audio': '/Resources/Normal_Mode/Delete.wav',
+	\ 'map_command': 'vnoremap',
+	\ 'map_from': 'x',
+	\ 'count': 1,
+\ }
+
+let s:mappings['d'] = {
+	\ 'map_to': ':set opfunc=<SID>Delete<CR>g@',
+	\ 'silence': 1,
+\ }
+let s:mappings['v_d'] = {
+	\ 'map_from': 'd',
+	\ 'map_to': ':<C-U>call <SID>Delete(visualmode(), 1)<CR>',
+	\ 'map_command': 'vnoremap',
+	\ 'silence': 1,
+\ }
+
+let s:mappings['dd'] = {
+	\ 'map_to': ':set opfunc=<SID>DeleteLine<CR>g@$',
+	\ 'silence': 1,
+\ }
+
+" nnoremap <silent> d :<c-u>call auditory#Play('/Resources/Normal_Mode/Delete.wav') \| exec 'normal!' v:count1 . 'd'<cr>
+" nnoremap <silent> d :<c-u>set opfunc=d \| call auditory#Play('/Resources/Normal_Mode/Delete.wav') \| exec 'normal!' v:count1 . @g<cr>
+
+" inoremap <silent> <c-p> <esc>:<c-u>call auditory#Play('/Resources/auto_complete.wav')<cr>a<c-p><c-p>
+" inoremap <silent> <c-n> <esc>:<c-u>call auditory#Play('/Resources/auto_complete.wav')<cr>a<c-n><c-n>
+
+let s:mappings['u'] = {
+	\ 'audio': '/Resources/Normal_Mode/Undo.wav',
+	\ 'count': 1,
+\ }
+
+" Note: redo doesn't currently support a count because the `v:count1` was giving me an error
+let s:mappings['<c-r>'] = {
+	\ 'audio': '/Resources/Normal_Mode/Redo.wav',
+\ }
+
+function! auditory#AssignMappings()
+	for [key, value] in items(s:mappings)
+		call auditory#StoreUserMapping(key)
+		
+		" Default to nnoremap
+		let l:cmd = has_key(value, 'map_command') ? value.map_command : 'nnoremap'
+		
+		" If `map_from` is specified, we can't rely on `key` to provide it
+		let l:map_from = has_key(value, 'map_from') ? value.map_from : key
+		
+		if has_key(value, 'audio')
+			let l:audio = ':<c-u>call auditory#Play("' . value.audio . '")'
+		else
+			let l:audio = ''
+		endif
+		
+		" Map to key unless a `map_to` or user mapping is defined
+		if has_key(value, 'map_to')
+			let l:map_to = value.map_to
+		else
+			if has_key(value, 'user_mapping')
+				let l:map_to = value.user_mapping
+			else
+				let l:map_to = key
+			endif
+		endif
+		
+		let l:map_to_with_count = has_key(value, 'count') ?
+			\ "execute 'normal!' v:count1 .  '" . l:map_to . "'<cr>" :
+			\ l:map_to
+		
+		" If this an `execute` mapping, add a pipe.
+		" Otherwise <cr> to exit command mode.
+		if l:audio !=# ''
+			let l:pipe = match(l:map_to_with_count , 'exec') !=# -1 ? ' \| ' : '<cr>'
+		else
+			let l:pipe = ''
+		endif
+		
+		" Default to <silent> unless the mapping explicitly calls for a value
+		let l:silence = '<silent>'
+		if has_key(value, 'silent')
+			let l:silence = value.silent ? l:silence : ''
+		endif
+		
+		execute l:cmd . ' ' . l:silence . ' ' . l:map_from .
+			\ ' ' .
+			\ l:audio .
+			\ l:pipe .
+			\ l:map_to_with_count
+	endfor
 	
-	nnoremap <silent> ( :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . '('<cr>
-	nnoremap <silent> ) :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . ')'<cr>
-	nnoremap <silent> { :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . '{'<cr>
-	nnoremap <silent> } :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . '}'<cr>
+	call auditory#AssignInsertMappings()
 	
-	nnoremap <silent> <c-i> :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . '<c-i>'<cr>
-	nnoremap <silent> <c-o> :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . '<c-o>'<cr>
+	let g:auditory_on = 1
+endfunction
+
+
+" If users have a custom mapping for any of the commands we need, store the
+" mapping so we can map to it after playing audio and so we can restore the
+" user's mappings when the plugin is toggled off.
+function! auditory#StoreUserMapping(map_from)
+	if !has_key(s:mappings[a:map_from], 'user_mapping')
+		let l:map_from = has_key(s:mappings[a:map_from], 'map_from') ?
+			\ s:mappings[a:map_from].map_from : a:map_from
+		let l:map_mode = has_key(s:mappings[a:map_from], 'map_command') ?
+			\ s:mappings[a:map_from].map_command[0] : 'n'
+		let l:user_mapping = maparg(l:map_from, l:map_mode)
+		
+		if l:user_mapping !=# ''
+			let s:mappings[a:map_from].user_mapping = l:user_mapping
+		endif
+	endif
+endfunction
+
+
+function! auditory#Unmap()
+	for [key, value] in items(s:mappings)
+		let l:cmd = has_key(value, 'map_command') ? value.map_command : 'nnoremap'
+		let l:key = has_key(value, 'map_from') ? value.map_from : key
+		let l:user_mapping = get(value, 'user_mapping', '')
+		
+		execute l:cmd[0] . 'unmap ' . l:key
+		
+		if l:user_mapping !=# ''
+			execute l:cmd . ' ' . get(value, 'map_from', key) . ' ' . value.user_mapping
+		endif
+	endfor
 	
-	nnoremap <silent> gg :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count1 . 'gg'<cr>
-	nnoremap <silent> G :<c-u>call auditory#Play('/Resources/Normal_Mode/Jump.wav') \| exec 'normal!' v:count . 'G'<cr>
+	call auditory#UnmapInsert()
 	
-	nnoremap <silent> x :<c-u>call auditory#Play('/Resources/Normal_Mode/Delete.wav') \| exec 'normal!' v:count1 . 'x'<cr>
-	vnoremap <silent> x :<c-u>call auditory#Play('/Resources/Normal_Mode/Delete.wav') \| exec 'normal!' v:count1 . 'x'<cr>
-	" nnoremap <silent> d :<c-u>call auditory#Play('/Resources/Normal_Mode/Delete.wav') \| exec 'normal!' v:count1 . 'd'<cr>
-	" nnoremap <silent> d :<c-u>set opfunc=d \| call auditory#Play('/Resources/Normal_Mode/Delete.wav') \| exec 'normal!' v:count1 . @g<cr>
-	
-	" inoremap <silent> <c-p> <esc>:<c-u>call auditory#Play('/Resources/auto_complete.wav')<cr>a<c-p><c-p>
-	" inoremap <silent> <c-n> <esc>:<c-u>call auditory#Play('/Resources/auto_complete.wav')<cr>a<c-n><c-n>
-	
-	nnoremap <silent> u :<c-u>call auditory#Play('/Resources/Normal_Mode/Undo.wav') \| exec 'normal!' v:count1 . 'u'<cr>
-	
-	" Note: redo doesn't currently support a count because the `v:count1` was giving me an error
-	nnoremap <silent> <c-r> :<c-u>call auditory#Play('/Resources/Normal_Mode/Redo.wav')<cr><c-r>
+	let g:auditory_on = 0
+endfunction
+
+
+function! auditory#ToggleMappings()
+	if g:auditory_on
+		call auditory#Unmap()
+	else
+		call auditory#AssignMappings()
+	endif
 endfunction

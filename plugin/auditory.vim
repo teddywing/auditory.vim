@@ -11,13 +11,21 @@ if !executable('mplayer')
 endif
 
 
-augroup auditory#insert_mode
-	autocmd!
-	autocmd CursorMovedI * call auditory#PlayScale()
-augroup END
+if !exists('g:auditory_on')
+	let g:auditory_on = 0
+endif
+
+if !exists('g:auditory_galaxy_far_far_away')
+	let g:auditory_galaxy_far_far_away = 0
+endif
 
 
+command! AuditoryOn call auditory#AssignMappings()
+command! AuditoryOff call auditory#Unmap()
+command! AuditoryToggle call auditory#ToggleMappings()
 command! AuditoryToggleGalaxyFarFarAway call auditory#ToggleGalaxyFarFarAway()
 
 
-call auditory#NormalModeMappings()
+if g:auditory_on
+	call auditory#AssignMappings()
+endif

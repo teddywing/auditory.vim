@@ -1,0 +1,22 @@
+CHANGELOG
+=========
+
+v0.0.5 (2014.10.27):
+	* Don't reload the plugin if it's already loaded
+
+v0.0.4 (2014.10.22):
+	* Show a warning message if `mplayer` is not installed
+
+v0.0.3 (2014.10.15):
+	* Update default insert mode sounds to use 3 octaves from the C# scale
+	  instead of a single one. (Spencer Bateman)
+	* Fix bug where `d` didn't save to the delete register
+	* Add installation instructions to README
+
+v0.0.2 (2014.10.10):
+	* Make `dd` work to delete a line and play the delete sound
+
+v0.0.1 (2014.10.09):
+	* Initial alpha release from Boston Music Hack Day 2014. Support for an
+	  array of normal mode command sounds, insert mode sounds, as well as Galaxy
+	  Far Far Away sounds in insert mode.
