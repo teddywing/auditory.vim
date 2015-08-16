@@ -174,9 +174,6 @@ endfunction
 
 " Operators
 " =========
-nnoremap <silent> d :set opfunc=<SID>Delete<CR>g@
-nnoremap <silent> dd :set opfunc=<SID>DeleteLine<CR>g@$
-vnoremap <silent> d :<C-U>call <SID>Delete(visualmode(), 1)<CR>
 
 function! s:Delete(type, ...)
 	let sel_save = &selection
@@ -404,6 +401,23 @@ let s:mappings['v_x'] = {
 	\ 'map_from': 'x',
 	\ 'count': 1,
 \ }
+
+let s:mappings['d'] = {
+	\ 'map_to': ':set opfunc=<SID>Delete<CR>g@',
+	\ 'silence': 1,
+\ }
+let s:mappings['v_d'] = {
+	\ 'map_from': 'd',
+	\ 'map_to': ':<C-U>call <SID>Delete(visualmode(), 1)<CR>',
+	\ 'map_command': 'vnoremap',
+	\ 'silence': 1,
+\ }
+
+let s:mappings['dd'] = {
+	\ 'map_to': ':set opfunc=<SID>DeleteLine<CR>g@$',
+	\ 'silence': 1,
+\ }
+
 " nnoremap <silent> d :<c-u>call auditory#Play('/Resources/Normal_Mode/Delete.wav') \| exec 'normal!' v:count1 . 'd'<cr>
 " nnoremap <silent> d :<c-u>set opfunc=d \| call auditory#Play('/Resources/Normal_Mode/Delete.wav') \| exec 'normal!' v:count1 . @g<cr>
 
@@ -430,6 +444,12 @@ function! auditory#AssignMappings()
 		" If `map_from` is specified, we can't rely on `key` to provide it
 		let l:map_from = has_key(value, 'map_from') ? value.map_from : key
 		
+		if has_key(value, 'audio')
+			let l:audio = ':<c-u>call auditory#Play("' . value.audio . '")'
+		else
+			let l:audio = ''
+		endif
+		
 		" Map to key unless a `map_to` or user mapping is defined
 		if has_key(value, 'map_to')
 			let l:map_to = value.map_to
@@ -447,7 +467,11 @@ function! auditory#AssignMappings()
 		
 		" If this an `execute` mapping, add a pipe.
 		" Otherwise <cr> to exit command mode.
-		let l:pipe = match(l:map_to_with_count , 'exec') !=# -1 ? ' \| ' : '<cr>'
+		if l:audio !=# ''
+			let l:pipe = match(l:map_to_with_count , 'exec') !=# -1 ? ' \| ' : '<cr>'
+		else
+			let l:pipe = ''
+		endif
 		
 		" Default to <silent> unless the mapping explicitly calls for a value
 		let l:silence = '<silent>'
@@ -456,7 +480,8 @@ function! auditory#AssignMappings()
 		endif
 		
 		execute l:cmd . ' ' . l:silence . ' ' . l:map_from .
-			\ ' :<c-u>call auditory#Play("' . value.audio . '")' .
+			\ ' ' .
+			\ l:audio .
 			\ l:pipe .
 			\ l:map_to_with_count
 	endfor
