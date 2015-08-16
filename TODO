@@ -26,8 +26,8 @@ v Add pathogen instructions to README (2014.11.15)
 v Make `dd` work to delete a line
 v Checking whether mplayer is installed and send an error if not (2014.11.22)
 - Adding some docs
-- Global setting for Galaxy Far Far Away mode
-- Add an easy way to turn the plugin on and off without having to disable it manually
+v Global setting for Galaxy Far Far Away mode (2015.08.16)
+v Add an easy way to turn the plugin on and off without having to disable it manually (2015.08.15)
 - Play the delete sound when pressing 'D'
 
 
