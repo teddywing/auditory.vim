@@ -76,6 +76,21 @@ function! auditory#PlayScale()
 endfunction
 
 
+function! auditory#AssignInsertMappings()
+	augroup auditory#insert_mode
+		autocmd!
+		autocmd CursorMovedI * call auditory#PlayScale()
+	augroup END
+endfunction
+
+
+function! auditory#UnmapInsert()
+	augroup auditory#insert_mode
+		autocmd!
+	augroup END
+endfunction
+
+
 let s:galaxy_far_far_away_index = 0
 let s:cantina = [
 	\ 'Cantina_1.1.wav',
@@ -485,6 +500,8 @@ function! auditory#AssignMappings()
 			\ l:pipe .
 			\ l:map_to_with_count
 	endfor
+	
+	call auditory#AssignInsertMappings()
 endfunction
 
 
@@ -518,4 +535,6 @@ function! auditory#Unmap()
 			execute l:cmd . ' ' . get(value, 'map_from', key) . ' ' . value.user_mapping
 		endif
 	endfor
+	
+	call auditory#UnmapInsert()
 endfunction
