@@ -502,6 +502,8 @@ function! auditory#AssignMappings()
 	endfor
 	
 	call auditory#AssignInsertMappings()
+	
+	let g:auditory_on = 1
 endfunction
 
 
@@ -537,15 +539,15 @@ function! auditory#Unmap()
 	endfor
 	
 	call auditory#UnmapInsert()
+	
+	let g:auditory_on = 0
 endfunction
 
 
 function! auditory#ToggleMappings()
 	if g:auditory_on
 		call auditory#Unmap()
-		let g:auditory_on = 0
 	else
 		call auditory#AssignMappings()
-		let g:auditory_on = 1
 	endif
 endfunction
