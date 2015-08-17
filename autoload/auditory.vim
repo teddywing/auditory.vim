@@ -188,218 +188,218 @@ endfunction
 " Standard Mappings
 " =================
 
-let s:mappings = {}
-let s:mappings['h'] = {
+let g:auditory_mappings = {}
+let g:auditory_mappings['h'] = {
 	\ 'audio': '/Resources/Normal_Mode/Left.wav',
 	\ 'count': 1,
 \ }
-let s:mappings['j'] = {
+let g:auditory_mappings['j'] = {
 	\ 'audio': '/Resources/Normal_Mode/Down.wav',
 	\ 'count': 1,
 \ }
-let s:mappings['k'] = {
+let g:auditory_mappings['k'] = {
 	\ 'audio': '/Resources/Normal_Mode/Up.wav',
 	\ 'count': 1,
 \ }
-let s:mappings['l'] = {
+let g:auditory_mappings['l'] = {
 	\ 'audio': '/Resources/Normal_Mode/Right.wav',
 	\ 'count': 1,
 \ }
 
-let s:mappings['gj'] = {
+let g:auditory_mappings['gj'] = {
 	\ 'audio': '/Resources/Normal_Mode/Down.wav',
 	\ 'count': 1,
 \ }
-let s:mappings['gk'] = {
+let g:auditory_mappings['gk'] = {
 	\ 'audio': '/Resources/Normal_Mode/Up.wav',
 	\ 'count': 1,
 \ }
 
-let s:mappings['<space>'] = {
+let g:auditory_mappings['<space>'] = {
 	\ 'audio': '/Resources/Normal_Mode/Right.wav',
 	\ 'count': 1,
 \ }
 
 " FIXME: allow counts on the delete key
-let s:mappings['<bs>'] = {
+let g:auditory_mappings['<bs>'] = {
 	\ 'audio': '/Resources/Normal_Mode/Left.wav',
 \ }
 
-let s:mappings['0'] = {
+let g:auditory_mappings['0'] = {
 	\ 'audio': '/Resources/Normal_Mode/Left.wav',
 \ }
-let s:mappings['^'] = {
-	\ 'audio': '/Resources/Normal_Mode/Left.wav',
-	\ 'count': 1,
-\ }
-let s:mappings['_'] = {
+let g:auditory_mappings['^'] = {
 	\ 'audio': '/Resources/Normal_Mode/Left.wav',
 	\ 'count': 1,
 \ }
-let s:mappings['$'] = {
+let g:auditory_mappings['_'] = {
+	\ 'audio': '/Resources/Normal_Mode/Left.wav',
+	\ 'count': 1,
+\ }
+let g:auditory_mappings['$'] = {
 	\ 'audio': '/Resources/Normal_Mode/Right.wav',
 	\ 'count': 1,
 \ }
-let s:mappings['g_'] = {
+let g:auditory_mappings['g_'] = {
 	\ 'audio': '/Resources/Normal_Mode/Right.wav',
 	\ 'count': 1,
 \ }
-let s:mappings['%'] = {
+let g:auditory_mappings['%'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
 \ }
 
-let s:mappings['b'] = {
+let g:auditory_mappings['b'] = {
 	\ 'audio': '/Resources/Normal_Mode/Left.wav',
 	\ 'count': 1,
 \ }
-let s:mappings['w'] = {
+let g:auditory_mappings['w'] = {
 	\ 'audio': '/Resources/Normal_Mode/Right.wav',
 	\ 'count': 1,
 \ }
-let s:mappings['e'] = {
+let g:auditory_mappings['e'] = {
 	\ 'audio': '/Resources/Normal_Mode/Right.wav',
 	\ 'count': 1,
 \ }
-let s:mappings['B'] = {
+let g:auditory_mappings['B'] = {
 	\ 'audio': '/Resources/Normal_Mode/Left.wav',
 	\ 'count': 1,
 \ }
-let s:mappings['W'] = {
+let g:auditory_mappings['W'] = {
 	\ 'audio': '/Resources/Normal_Mode/Right.wav',
 	\ 'count': 1,
 \ }
-let s:mappings['E'] = {
+let g:auditory_mappings['E'] = {
 	\ 'audio': '/Resources/Normal_Mode/Right.wav',
 	\ 'count': 1,
 \ }
 
-let s:mappings['p'] = {
+let g:auditory_mappings['p'] = {
 	\ 'audio': '/Resources/Normal_Mode/Paste.wav',
 	\ 'count': 1,
 \ }
-let s:mappings['P'] = {
+let g:auditory_mappings['P'] = {
 	\ 'audio': '/Resources/Normal_Mode/Paste.wav',
 	\ 'count': 1,
 \ }
 
-let s:mappings['/'] = {
+let g:auditory_mappings['/'] = {
 	\ 'audio': '/Resources/Normal_Mode/Search.wav',
 	\ 'silent': 0,
 \ }
-let s:mappings['n'] = {
+let g:auditory_mappings['n'] = {
 	\ 'audio': '/Resources/Normal_Mode/Search.wav',
 	\ 'silent': 0,
 \ }
-let s:mappings['N'] = {
+let g:auditory_mappings['N'] = {
 	\ 'audio': '/Resources/Normal_Mode/Search.wav',
 	\ 'silent': 0,
 \ }
-let s:mappings['#'] = {
+let g:auditory_mappings['#'] = {
 	\ 'audio': '/Resources/Normal_Mode/Search.wav',
 	\ 'silent': 0,
 \ }
-let s:mappings['*'] = {
+let g:auditory_mappings['*'] = {
 	\ 'audio': '/Resources/Normal_Mode/Search.wav',
 	\ 'silent': 0,
 \ }
 
-let s:mappings['zt'] = {
+let g:auditory_mappings['zt'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
 \ }
-let s:mappings['z.'] = {
+let g:auditory_mappings['z.'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
 \ }
-let s:mappings['zz'] = {
+let g:auditory_mappings['zz'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
 \ }
-let s:mappings['zb'] = {
+let g:auditory_mappings['zb'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
 \ }
 
 " FIXME: Allow these scrolling commands to support counts. Was getting errors constructing them the other way
-let s:mappings['<c-d>'] = {
+let g:auditory_mappings['<c-d>'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
 \ }
-let s:mappings['<c-u>'] = {
+let g:auditory_mappings['<c-u>'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
 \ }
-let s:mappings['<c-f>'] = {
+let g:auditory_mappings['<c-f>'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
 \ }
 
 " FIXME: need to press <c-b> twice in order for it to work
-let s:mappings['<c-b>'] = {
+let g:auditory_mappings['<c-b>'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
 \ }
 
-let s:mappings['H'] = {
+let g:auditory_mappings['H'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
 \ }
-let s:mappings['M'] = {
+let g:auditory_mappings['M'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
 \ }
-let s:mappings['L'] = {
+let g:auditory_mappings['L'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
 \ }
 
-let s:mappings['('] = {
+let g:auditory_mappings['('] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
 	\ 'count': 1,
 \ }
-let s:mappings[')'] = {
+let g:auditory_mappings[')'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
 	\ 'count': 1,
 \ }
-let s:mappings['{'] = {
+let g:auditory_mappings['{'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
 	\ 'count': 1,
 \ }
-let s:mappings['}'] = {
-	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'count': 1,
-\ }
-
-let s:mappings['<c-i>'] = {
-	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'count': 1,
-\ }
-let s:mappings['<c-o>'] = {
+let g:auditory_mappings['}'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
 	\ 'count': 1,
 \ }
 
-let s:mappings['gg'] = {
+let g:auditory_mappings['<c-i>'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
 	\ 'count': 1,
 \ }
-let s:mappings['G'] = {
+let g:auditory_mappings['<c-o>'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
 	\ 'count': 1,
 \ }
 
-let s:mappings['x'] = {
+let g:auditory_mappings['gg'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+	\ 'count': 1,
+\ }
+let g:auditory_mappings['G'] = {
+	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
+	\ 'count': 1,
+\ }
+
+let g:auditory_mappings['x'] = {
 	\ 'audio': '/Resources/Normal_Mode/Delete.wav',
 	\ 'count': 1,
 \ }
-let s:mappings['v_x'] = {
+let g:auditory_mappings['v_x'] = {
 	\ 'audio': '/Resources/Normal_Mode/Delete.wav',
 	\ 'map_command': 'vnoremap',
 	\ 'map_from': 'x',
 	\ 'count': 1,
 \ }
 
-let s:mappings['d'] = {
+let g:auditory_mappings['d'] = {
 	\ 'map_to': ':set opfunc=<SID>Delete<CR>g@',
 	\ 'silence': 1,
 \ }
-let s:mappings['v_d'] = {
+let g:auditory_mappings['v_d'] = {
 	\ 'map_from': 'd',
 	\ 'map_to': ':<C-U>call <SID>Delete(visualmode(), 1)<CR>',
 	\ 'map_command': 'vnoremap',
 	\ 'silence': 1,
 \ }
 
-let s:mappings['dd'] = {
+let g:auditory_mappings['dd'] = {
 	\ 'map_to': ':set opfunc=<SID>DeleteLine<CR>g@$',
 	\ 'silence': 1,
 \ }
@@ -410,18 +410,18 @@ let s:mappings['dd'] = {
 " inoremap <silent> <c-p> <esc>:<c-u>call auditory#Play('/Resources/auto_complete.wav')<cr>a<c-p><c-p>
 " inoremap <silent> <c-n> <esc>:<c-u>call auditory#Play('/Resources/auto_complete.wav')<cr>a<c-n><c-n>
 
-let s:mappings['u'] = {
+let g:auditory_mappings['u'] = {
 	\ 'audio': '/Resources/Normal_Mode/Undo.wav',
 	\ 'count': 1,
 \ }
 
 " Note: redo doesn't currently support a count because the `v:count1` was giving me an error
-let s:mappings['<c-r>'] = {
+let g:auditory_mappings['<c-r>'] = {
 	\ 'audio': '/Resources/Normal_Mode/Redo.wav',
 \ }
 
 function! auditory#AssignMappings()
-	for [key, value] in items(s:mappings)
+	for [key, value] in items(g:auditory_mappings)
 		call auditory#StoreUserMapping(key)
 		
 		" Default to nnoremap
@@ -482,22 +482,22 @@ endfunction
 " mapping so we can map to it after playing audio and so we can restore the
 " user's mappings when the plugin is toggled off.
 function! auditory#StoreUserMapping(map_from)
-	if !has_key(s:mappings[a:map_from], 'user_mapping')
-		let l:map_from = has_key(s:mappings[a:map_from], 'map_from') ?
-			\ s:mappings[a:map_from].map_from : a:map_from
-		let l:map_mode = has_key(s:mappings[a:map_from], 'map_command') ?
-			\ s:mappings[a:map_from].map_command[0] : 'n'
+	if !has_key(g:auditory_mappings[a:map_from], 'user_mapping')
+		let l:map_from = has_key(g:auditory_mappings[a:map_from], 'map_from') ?
+			\ g:auditory_mappings[a:map_from].map_from : a:map_from
+		let l:map_mode = has_key(g:auditory_mappings[a:map_from], 'map_command') ?
+			\ g:auditory_mappings[a:map_from].map_command[0] : 'n'
 		let l:user_mapping = maparg(l:map_from, l:map_mode)
 		
 		if l:user_mapping !=# ''
-			let s:mappings[a:map_from].user_mapping = l:user_mapping
+			let g:auditory_mappings[a:map_from].user_mapping = l:user_mapping
 		endif
 	endif
 endfunction
 
 
 function! auditory#Unmap()
-	for [key, value] in items(s:mappings)
+	for [key, value] in items(g:auditory_mappings)
 		let l:cmd = has_key(value, 'map_command') ? value.map_command : 'nnoremap'
 		let l:key = has_key(value, 'map_from') ? value.map_from : key
 		let l:user_mapping = get(value, 'user_mapping', '')
