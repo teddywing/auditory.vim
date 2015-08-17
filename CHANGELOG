@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+v0.1.1 (2015.08.16):
+	* Make the auditory mappings dictionary a global variable instead of a
+	  script-local variable to give users the ability to modify & customise it
+
 v0.1.0 (2015.08.16):
 	* Don't turn the sounds on by default when the plugin is loaded
 	* Add `g:auditory_on` config variable
