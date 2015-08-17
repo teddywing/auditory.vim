@@ -1,0 +1,13 @@
+AuditoryOff	auditory.txt	/*AuditoryOff*
+AuditoryOn	auditory.txt	/*AuditoryOn*
+AuditoryToggle	auditory.txt	/*AuditoryToggle*
+AuditoryToggleGalaxyFarFarAway	auditory.txt	/*AuditoryToggleGalaxyFarFarAway*
+auditory-commands	auditory.txt	/*auditory-commands*
+auditory-configuration	auditory.txt	/*auditory-configuration*
+auditory-configuration-auditory_galaxy_far_far_away	auditory.txt	/*auditory-configuration-auditory_galaxy_far_far_away*
+auditory-configuration-auditory_on	auditory.txt	/*auditory-configuration-auditory_on*
+auditory-contents	auditory.txt	/*auditory-contents*
+auditory-credits	auditory.txt	/*auditory-credits*
+auditory-introduction	auditory.txt	/*auditory-introduction*
+auditory-license	auditory.txt	/*auditory-license*
+auditory.txt	auditory.txt	/*auditory.txt*

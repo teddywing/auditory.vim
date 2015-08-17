@@ -1,0 +1,77 @@
+*auditory.txt*	Interface sounds
+
+Author:  Teddy Wing <http://teddywing.com>
+License: MIT
+Version: 0.1.0
+
+==============================================================================
+CONTENTS                                                   *auditory-contents*
+
+    1. Introduction .......................... |auditory-introduction|
+    2. Commands .............................. |auditory-commands|
+        2.1. AuditoryOn ...................... |AuditoryOn|
+        2.2. AuditoryOff ..................... |AuditoryOff|
+        2.3. AuditoryToggle .................. |AuditoryToggle|
+        2.3. AuditoryToggleGalaxyFarFarAway .. |AuditoryToggleGalaxyFarFarAway|
+    3. Configuration ......................... |auditory-configuration|
+        3.1. g:auditory_on ................... |auditory-configuration-auditory_on|
+        3.2. g:auditory_galaxy_far_far_away .. |auditory-configuration-auditory_galaxy_far_far_away|
+    4. Credits ............................... |auditory-credits|
+    5. License ............................... |auditory-license|
+
+==============================================================================
+INTRODUCTION                                           *auditory-introduction*
+
+Auditory adds interface sounds to Vim. Various sounds are mapped to
+common commands and when inserting text. With sounds turned on, your
+normal text editing activities turn into a unique piece of music.
+
+==============================================================================
+COMMANDS                                                   *auditory-commands*
+
+:AuditoryOn                                                       *AuditoryOn*
+    Turn Auditory sounds on.
+
+:AuditoryOff                                                     *AuditoryOff*
+    Turn Auditory sounds off.
+
+:AuditoryToggle                                               *AuditoryToggle*
+    Toggle Auditory sounds on or off. Assign this command to a mapping
+    to quickly turn the plugin on and off.
+    
+    Example: >
+        nnoremap <leader>a :AuditoryToggle
+<
+
+:AuditoryToggleGalaxyFarFarAway               *AuditoryToggleGalaxyFarFarAway*
+    Toggle insert mode Galaxy Far Far Away sounds.
+
+==============================================================================
+CONFIGURATION                                         *auditory-configuration*
+
+g:auditory_on                             *auditory-configuration-auditory_on*
+    Turn Auditory on at startup by setting this to 1.
+    
+    Options: 0 or 1
+    Default: 0
+
+g:auditory_galaxy_far_far_away            *auditory-configuration-auditory_galaxy_far_far_away*
+    Turn on Galaxy Far Far Away insert mode sounds by default.
+    
+    Options: 0 or 1
+    Default: 0
+
+==============================================================================
+CREDITS                                                     *auditory-credits*
+
+Many thanks to Spencer Bateman (https://soundcloud.com/spencerbateman)
+for creating the custom sounds for this project. Thanks to Mackenzie
+Denker (https://soundcloud.com/mackenzie-denker) for contributing the
+Redo audio.
+
+==============================================================================
+LICENSE                                                     *auditory-license*
+
+Auditory is released under the MIT license.
+
+ vim:tw=78:ft=help:norl:
