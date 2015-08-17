@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+v0.1.2 (2015.08.16):
+	* Add documentation
+
 v0.1.1 (2015.08.16):
 	* Make the auditory mappings dictionary a global variable instead of a
 	  script-local variable to give users the ability to modify & customise it
