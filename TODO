@@ -1,6 +1,10 @@
 TODO
 ====
 
+2015.08.18:
+- Fix G mapping. By itself it doesn't go to the end of the buffer
+
+
 2015.07.26:
 v Add all mappings to `s:mappings`
 v Store user mappings on assignment
