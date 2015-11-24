@@ -374,7 +374,7 @@ let g:auditory_mappings['gg'] = {
 \ }
 let g:auditory_mappings['G'] = {
 	\ 'audio': '/Resources/Normal_Mode/Jump.wav',
-	\ 'count': 1,
+	\ 'count': 0,
 \ }
 
 let g:auditory_mappings['x'] = {
@@ -447,9 +447,12 @@ function! auditory#AssignMappings()
 			endif
 		endif
 		
-		let l:map_to_with_count = has_key(value, 'count') ?
-			\ "execute 'normal!' v:count1 .  '" . l:map_to . "'<cr>" :
-			\ l:map_to
+		if has_key(value, 'count')
+			let vcount = value.count ==# 1 ? 'v:count1' : 'v:count'
+			let l:map_to_with_count = "execute 'normal!' " . vcount . " . '" . l:map_to . "'<cr>"
+		else
+			let l:map_to_with_count = l:map_to
+		endif
 		
 		" If this an `execute` mapping, add a pipe.
 		" Otherwise <cr> to exit command mode.
