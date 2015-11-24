@@ -2,7 +2,7 @@ TODO
 ====
 
 2015.08.18:
-- Fix G mapping. By itself it doesn't go to the end of the buffer
+v Fix G mapping. By itself it doesn't go to the end of the buffer (2015.11.23)
 
 
 2015.07.26:
