@@ -421,63 +421,65 @@ let g:auditory_mappings['<c-r>'] = {
 \ }
 
 function! auditory#AssignMappings()
-	for [key, value] in items(g:auditory_mappings)
-		call auditory#StoreUserMapping(key)
-		
-		" Default to nnoremap
-		let l:cmd = has_key(value, 'map_command') ? value.map_command : 'nnoremap'
-		
-		" If `map_from` is specified, we can't rely on `key` to provide it
-		let l:map_from = has_key(value, 'map_from') ? value.map_from : key
-		
-		if has_key(value, 'audio')
-			let l:audio = ':<c-u>call auditory#Play("' . value.audio . '")'
-		else
-			let l:audio = ''
-		endif
-		
-		" Map to key unless a `map_to` or user mapping is defined
-		if has_key(value, 'map_to')
-			let l:map_to = value.map_to
-		else
-			if has_key(value, 'user_mapping')
-				let l:map_to = value.user_mapping
+	if !g:auditory_on
+		for [key, value] in items(g:auditory_mappings)
+			call auditory#StoreUserMapping(key)
+			
+			" Default to nnoremap
+			let l:cmd = has_key(value, 'map_command') ? value.map_command : 'nnoremap'
+			
+			" If `map_from` is specified, we can't rely on `key` to provide it
+			let l:map_from = has_key(value, 'map_from') ? value.map_from : key
+			
+			if has_key(value, 'audio')
+				let l:audio = ':<c-u>call auditory#Play("' . value.audio . '")'
 			else
-				let l:map_to = key
+				let l:audio = ''
 			endif
-		endif
+			
+			" Map to key unless a `map_to` or user mapping is defined
+			if has_key(value, 'map_to')
+				let l:map_to = value.map_to
+			else
+				if has_key(value, 'user_mapping')
+					let l:map_to = value.user_mapping
+				else
+					let l:map_to = key
+				endif
+			endif
+			
+			if has_key(value, 'count')
+				let vcount = value.count ==# 1 ? 'v:count1' : 'v:count'
+				let l:map_to_with_count = "execute 'normal!' " . vcount . " . '" . l:map_to . "'<cr>"
+			else
+				let l:map_to_with_count = l:map_to
+			endif
+			
+			" If this an `execute` mapping, add a pipe.
+			" Otherwise <cr> to exit command mode.
+			if l:audio !=# ''
+				let l:pipe = match(l:map_to_with_count , 'exec') !=# -1 ? ' \| ' : '<cr>'
+			else
+				let l:pipe = ''
+			endif
+			
+			" Default to <silent> unless the mapping explicitly calls for a value
+			let l:silence = '<silent>'
+			if has_key(value, 'silent')
+				let l:silence = value.silent ? l:silence : ''
+			endif
+			
+			execute l:cmd . ' ' . l:silence . ' ' . l:map_from .
+				\ ' ' .
+				\ l:audio .
+				\ l:pipe .
+				\ l:map_to_with_count
+		endfor
 		
-		if has_key(value, 'count')
-			let vcount = value.count ==# 1 ? 'v:count1' : 'v:count'
-			let l:map_to_with_count = "execute 'normal!' " . vcount . " . '" . l:map_to . "'<cr>"
-		else
-			let l:map_to_with_count = l:map_to
-		endif
+		call auditory#AssignInsertMappings()
 		
-		" If this an `execute` mapping, add a pipe.
-		" Otherwise <cr> to exit command mode.
-		if l:audio !=# ''
-			let l:pipe = match(l:map_to_with_count , 'exec') !=# -1 ? ' \| ' : '<cr>'
-		else
-			let l:pipe = ''
-		endif
-		
-		" Default to <silent> unless the mapping explicitly calls for a value
-		let l:silence = '<silent>'
-		if has_key(value, 'silent')
-			let l:silence = value.silent ? l:silence : ''
-		endif
-		
-		execute l:cmd . ' ' . l:silence . ' ' . l:map_from .
-			\ ' ' .
-			\ l:audio .
-			\ l:pipe .
-			\ l:map_to_with_count
-	endfor
-	
-	call auditory#AssignInsertMappings()
-	
-	let g:auditory_on = 1
+		let g:auditory_on = 1
+	endif
 endfunction
 
 
@@ -500,21 +502,23 @@ endfunction
 
 
 function! auditory#Unmap()
-	for [key, value] in items(g:auditory_mappings)
-		let l:cmd = has_key(value, 'map_command') ? value.map_command : 'nnoremap'
-		let l:key = has_key(value, 'map_from') ? value.map_from : key
-		let l:user_mapping = get(value, 'user_mapping', '')
+	if g:auditory_on
+		for [key, value] in items(g:auditory_mappings)
+			let l:cmd = has_key(value, 'map_command') ? value.map_command : 'nnoremap'
+			let l:key = has_key(value, 'map_from') ? value.map_from : key
+			let l:user_mapping = get(value, 'user_mapping', '')
+			
+			execute l:cmd[0] . 'unmap ' . l:key
+			
+			if l:user_mapping !=# ''
+				execute l:cmd . ' ' . get(value, 'map_from', key) . ' ' . value.user_mapping
+			endif
+		endfor
 		
-		execute l:cmd[0] . 'unmap ' . l:key
+		call auditory#UnmapInsert()
 		
-		if l:user_mapping !=# ''
-			execute l:cmd . ' ' . get(value, 'map_from', key) . ' ' . value.user_mapping
-		endif
-	endfor
-	
-	call auditory#UnmapInsert()
-	
-	let g:auditory_on = 0
+		let g:auditory_on = 0
+	endif
 endfunction
 
 
