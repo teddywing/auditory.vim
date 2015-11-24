@@ -2,7 +2,7 @@
 
 Author:  Teddy Wing <http://teddywing.com>
 License: MIT
-Version: 0.1.2
+Version: 0.1.3
 
 ==============================================================================
 CONTENTS                                                   *auditory-contents*
