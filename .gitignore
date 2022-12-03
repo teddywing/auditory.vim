@@ -1,2 +1,4 @@
 private/
+*.asd
+*.mp3
 .DS_Store
